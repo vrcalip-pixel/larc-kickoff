@@ -8,9 +8,9 @@
      PAGE METADATA
      Edit these to update title, description, and social-share previews
      ============================================================ -->
-<title>Regional Kick-Off Convening — LA-25 LARC AI Literacy &amp; Innovation</title>
-<meta name="description" content="A multi-year, faculty-led initiative across 18 community colleges in Los Angeles County. Friday, May 22, 2026 — Long Beach City College.">
-<meta property="og:title" content="Regional Kick-Off Convening — LA-25 LARC AI Literacy &amp; Innovation">
+<title>Regional Kick-Off Convening — LA-25 LARC and LBCC AI Literacy &amp; Innovation</title>
+<meta name="description" content="A faculty-led initiative across 18 community colleges in Los Angeles County. Friday, May 22, 2026 — Long Beach City College.">
+<meta property="og:title" content="Regional Kick-Off Convening — LA-25 LARC and LBCC AI Literacy &amp; Innovation">
 <meta property="og:description" content="Friday, May 22, 2026 · Long Beach City College · 10:00 AM – 2:30 PM PT">
 <meta property="og:type" content="website">
 
@@ -146,20 +146,6 @@
     font-size: 1.05rem;
     line-height: 1;
   }
-  .nav-brand .mark {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: var(--navy);
-    color: var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    font-family: var(--sans);
-  }
   .nav-brand small {
     display: block;
     font-family: var(--sans);
@@ -224,6 +210,8 @@
     background: radial-gradient(circle, rgba(255, 184, 28, 0.18) 0%, rgba(255, 184, 28, 0) 70%);
     pointer-events: none;
     z-index: 0;
+    transform: translate3d(0, calc(var(--scroll-y, 0px) * 0.35), 0);
+    will-change: transform;
   }
   .hero::after {
     content: "";
@@ -236,6 +224,8 @@
     background: radial-gradient(circle, rgba(0, 51, 102, 0.1) 0%, rgba(0, 51, 102, 0) 70%);
     pointer-events: none;
     z-index: 0;
+    transform: translate3d(0, calc(var(--scroll-y, 0px) * 0.55), 0);
+    will-change: transform;
   }
   .hero .container { position: relative; z-index: 1; }
 
@@ -468,6 +458,48 @@
     color: #fff;
   }
 
+  /* Compact ghost pill — for section-level secondary CTAs */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--navy);
+    background: transparent;
+    color: var(--navy);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .btn-pill:hover {
+    background: var(--navy);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px -10px rgba(0, 51, 102, 0.45);
+  }
+
+  /* Heading row: section h2 with a CTA pill to its right */
+  .section-heading-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .section-heading-row h2 {
+    margin-bottom: 0;
+  }
+  .section-heading-row .btn-pill.reveal {
+    transition-delay: 0.08s;
+  }
+
   /* ============================================================
      SECTION SCAFFOLDING
      ============================================================ */
@@ -554,33 +586,35 @@
   }
   .overview-body p:last-child { margin-bottom: 0; }
 
-  .stats-strip {
-    margin-top: 4rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--rule);
+  .stats-quadrants {
+    margin-top: 1.75rem;
+    margin-left: 1.5rem; /* align with pull-quote text */
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1.75rem;
   }
   .stat {
-    text-align: left;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
   }
   .stat-num {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(2.4rem, 5vw, 3.6rem);
-    color: var(--navy-900);
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--navy);
+    font-variant-numeric: tabular-nums;
     line-height: 1;
-    letter-spacing: -0.03em;
-    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.02em;
   }
   .stat-label {
-    font-size: 0.74rem;
+    font-family: var(--sans);
+    font-size: 0.7rem;
     font-weight: 700;
     color: var(--ink-mute);
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    margin-top: 0.5rem;
+    margin-top: 0;
   }
 
   /* ============================================================
@@ -603,7 +637,7 @@
     flex-wrap: wrap;
   }
   .arc-header.morning   { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-600) 100%); }
-  .arc-header.midday    { background: linear-gradient(135deg, var(--t2) 0%, #1a8a72 100%); }
+  .arc-header.midday    { background: linear-gradient(135deg, #6F1A2E 0%, #B0234A 100%); }
   .arc-header.afternoon { background: linear-gradient(135deg, var(--t4) 0%, #2a8775 100%); }
 
   .arc-num {
@@ -646,6 +680,10 @@
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.01em;
   }
+  /* Time color picks up the arc identity */
+  .arc-morning   .agenda-time { color: var(--navy); }
+  .arc-midday    .agenda-time { color: #8B1E3C; }
+  .arc-afternoon .agenda-time { color: var(--t4); }
   .agenda-content h3 {
     font-family: var(--sans);
     font-size: 1rem;
@@ -967,21 +1005,138 @@
   }
 
   /* ============================================================
-     ENTRANCE ANIMATIONS
+     ENTRANCE ANIMATIONS — "morph-like" scroll reveals
      ============================================================ */
   .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(36px) scale(0.985);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
   .reveal.in {
     opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Section h2 picks up a slight horizontal nudge for editorial feel */
+  section h2.reveal {
+    transform: translateY(36px) scale(0.97);
+    transform-origin: left center;
+  }
+  section h2.reveal.in {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Pull-quote in the overview slides in from the side */
+  .overview-pull.reveal {
+    transform: translateX(-24px);
+    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .overview-pull.reveal.in {
+    transform: translateX(0);
+  }
+
+  /* Stagger cascades inside grouped layouts */
+  .tracks-grid    .reveal:nth-child(2) { transition-delay: 0.08s; }
+  .tracks-grid    .reveal:nth-child(3) { transition-delay: 0.16s; }
+  .tracks-grid    .reveal:nth-child(4) { transition-delay: 0.24s; }
+
+  .logistics-grid .reveal:nth-child(2) { transition-delay: 0.08s; }
+  .logistics-grid .reveal:nth-child(3) { transition-delay: 0.16s; }
+  .logistics-grid .reveal:nth-child(4) { transition-delay: 0.24s; }
+
+  .contact-grid   .reveal:nth-child(2) { transition-delay: 0.10s; }
+  .contact-grid   .reveal:nth-child(3) { transition-delay: 0.20s; }
+
+  .stats-quadrants .stat.reveal:nth-child(2) { transition-delay: 0.08s; }
+  .stats-quadrants .stat.reveal:nth-child(3) { transition-delay: 0.16s; }
+  .stats-quadrants .stat.reveal:nth-child(4) { transition-delay: 0.24s; }
+
+  /* Hero cascades on page load: eyebrow → headline → lede → countdown → meta → CTAs */
+  .hero .container > .reveal:nth-child(1) { transition-delay: 0s; }
+  .hero .container > .reveal:nth-child(2) { transition-delay: 0.06s; }
+  .hero .container > .reveal:nth-child(3) { transition-delay: 0.12s; }
+  .hero .container > .reveal:nth-child(4) { transition-delay: 0.18s; }
+  .hero .container > .reveal:nth-child(5) { transition-delay: 0.24s; }
+  .hero .container > .reveal:nth-child(6) { transition-delay: 0.30s; }
+
+  /* Agenda rows reveal individually as you scroll through each arc */
+  .agenda-row.reveal {
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .agenda-row.reveal.in {
     transform: translateY(0);
   }
+
+  /* FAQ items reveal as you reach them */
+  details.reveal {
+    transform: translateY(16px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  details.reveal.in {
+    transform: translateY(0);
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
+    .reveal,
+    section h2.reveal,
+    .overview-pull.reveal,
+    .agenda-row.reveal,
+    details.reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
     .pulse-dot { animation: none; }
     html { scroll-behavior: auto; }
+  }
+
+  /* ============================================================
+     SCROLL-DRIVEN FOCUS BLUR (depth-of-field)
+     Content blocks soft-focus toward the edges of the viewport
+     and sharpen toward the center. Works in both scroll directions.
+     Uses filter:opacity() (not the opacity property) so it coexists
+     with the .reveal entrance animation without conflict.
+     Wrapped in @supports so older browsers just skip the effect.
+     ============================================================ */
+  @supports (animation-timeline: view()) {
+    @keyframes focus-blur {
+      0%, 100% { filter: blur(3px) opacity(0.4); }
+      22%, 78% { filter: blur(0) opacity(1); }
+    }
+
+    .countdown-wrap,
+    .overview-pull,
+    .overview-body,
+    .stat,
+    .agenda-arc,
+    .track-card,
+    .logistics-card,
+    .faq-list details,
+    .contact-person {
+      animation: focus-blur linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .countdown-wrap,
+      .overview-pull,
+      .overview-body,
+      .stat,
+      .agenda-arc,
+      .track-card,
+      .logistics-card,
+      .faq-list details,
+      .contact-person {
+        animation: none;
+      }
+    }
   }
 
   /* ============================================================
@@ -1010,7 +1165,6 @@
     .nav-links.open .nav-cta { margin: 0.5rem 1.5rem; text-align: center; }
     .nav-toggle { display: block; }
     .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.5rem; }
   }
   @media (max-width: 640px) {
     .hero { padding: 3rem 0 4rem; }
@@ -1019,13 +1173,19 @@
     .countdown-wrap::before { left: 1.25rem; right: 1.25rem; }
     .countdown-grid { gap: 0.5rem; }
     .cd-tile { padding: 0.25rem 0.1rem; }
+    .cd-num { font-size: clamp(2rem, 10vw, 3.5rem); }
     .cd-label { font-size: 0.6rem; letter-spacing: 0.12em; }
+    .stats-quadrants {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      margin-left: 1.2rem;
+    }
     .agenda-row {
       grid-template-columns: 1fr;
       gap: 0.25rem;
       padding: 1rem 1.25rem;
     }
-    .agenda-time { font-size: 0.9rem; color: var(--crimson); }
+    .agenda-time { font-size: 0.9rem; }
     .arc-header { padding: 1.25rem 1.25rem 1rem; }
     .hero-meta { gap: 1.5rem; }
     .footer-bottom { flex-direction: column; align-items: flex-start; }
@@ -1053,8 +1213,7 @@
 <nav class="topnav">
   <div class="container">
     <a href="#top" class="nav-brand">
-      <span class="mark">LA<br></span>
-      <span>LA-25 Kick-Off<small>LARC AI Literacy &amp; Innovation</small></span>
+      <span>LA-25 Kick-Off<small>LARC and LBCC AI Literacy &amp; Innovation</small></span>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
     <ul class="nav-links" id="navLinks">
@@ -1073,12 +1232,12 @@
      ============================================================ -->
 <header class="hero" id="top">
   <div class="container">
-    <div class="hero-eyebrow reveal">LA-25 LARC AI Literacy &amp; Innovation Program</div>
+    <div class="hero-eyebrow reveal">LA-25 LARC and LBCC AI Literacy &amp; Innovation Program</div>
 
     <h1 class="reveal">Regional <em>Kick-Off</em><br>Convening <span class="accent">2026</span></h1>
 
     <p class="hero-lede reveal">
-      A multi-year, faculty-led initiative across 18 community colleges in
+      A faculty-led initiative across 18 community colleges in
       Los Angeles County. This is where we begin together.
     </p>
 
@@ -1153,13 +1312,33 @@
     <h2 class="reveal">A <em>regional</em> answer to a question that won't wait.</h2>
 
     <div class="overview-grid">
-      <div class="overview-pull reveal">
-        What does it mean to <em>teach, learn, and lead</em> in a world reshaped by AI?
+      <div class="overview-pull-col">
+        <div class="overview-pull reveal">
+          What does it mean to <em>teach, learn, and lead</em> in a world reshaped by AI?
+        </div>
+        <div class="stats-quadrants">
+          <div class="stat reveal">
+            <div class="stat-num">18</div>
+            <div class="stat-label">LARC Colleges</div>
+          </div>
+          <div class="stat reveal">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Parallel Tracks</div>
+          </div>
+          <div class="stat reveal">
+            <div class="stat-num">18<span style="font-size:0.5em">+</span></div>
+            <div class="stat-label">Months of Work</div>
+          </div>
+          <div class="stat reveal">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Region</div>
+          </div>
+        </div>
       </div>
       <div class="overview-body reveal">
         <p>
           Across 18 community colleges in Los Angeles County, faculty are reckoning with that
-          question every day. The LA-25 LARC AI Literacy &amp; Innovation Program is our regional
+          question every day. The LA-25 LARC and LBCC AI Literacy &amp; Innovation Program is our regional
           answer — and Long Beach City College is honored to serve as the lead institution.
         </p>
         <p>
@@ -1168,25 +1347,6 @@
           months building with. Track enrollment is complete; this day is about meeting your
           people, understanding the shape of the work, and leaving energized.
         </p>
-      </div>
-    </div>
-
-    <div class="stats-strip reveal">
-      <div class="stat">
-        <div class="stat-num">18</div>
-        <div class="stat-label">LARC Colleges</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">4</div>
-        <div class="stat-label">Parallel Tracks</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">18<span style="font-size:0.5em">+</span></div>
-        <div class="stat-label">Months of Work</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Region</div>
       </div>
     </div>
   </div>
@@ -1205,56 +1365,56 @@
     </p>
 
     <!-- MORNING ARC -->
-    <div class="agenda-arc reveal">
+    <div class="agenda-arc arc-morning reveal">
       <div class="arc-header morning">
         <span class="arc-num">i.</span>
         <span class="arc-title">Morning · Inspire &amp; Build Buy-In</span>
         <div class="arc-tagline">Leadership voices, vision, and a live faculty proof-of-concept</div>
       </div>
       <div class="arc-body">
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">9:30</div>
           <div class="agenda-content">
             <h3>Doors Open</h3>
             <p>Coffee, registration, lanyard distribution, and informal networking</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">10:00</div>
           <div class="agenda-content">
             <h3>Welcome · Project Lead</h3>
             <p>Dean Koby Moridzadeh, Acting Dean of Career Education (5 min)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">10:05</div>
           <div class="agenda-content">
             <h3>Run of Day</h3>
             <p>Vincent Calip, Faculty Lead Coordinator (3 min)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">10:08</div>
           <div class="agenda-content">
             <h3>LBCC Leadership Remarks</h3>
             <p>Dr. Mike Muñoz, President · Dr. Douglas, VPI · Gita Runkle, AVP of Economic Development (18 min total)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">10:26</div>
           <div class="agenda-content">
             <h3>Regional Welcome</h3>
             <p>Dr. Narineh Makijan, LA Regional Consortium — pre-recorded video remarks (10 min)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">10:36</div>
           <div class="agenda-content">
             <h3>Stand-and-Be-Recognized + Peer-College Voice</h3>
             <p>Recognition of leadership across the 18 participating colleges, followed by a peer institutional voice (15 min)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">10:51</div>
           <div class="agenda-content">
             <h3>Group Photo</h3>
@@ -1262,21 +1422,21 @@
             <span class="agenda-tag photo">Photo Moment</span>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">10:55</div>
           <div class="agenda-content">
             <h3>Vision Moment · "Why Now, Why Us"</h3>
             <p>Vincent Calip — the four-track architecture and the regional charge (15 min)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">11:10</div>
           <div class="agenda-content">
             <h3>AI Landscape · Center of Excellence</h3>
             <p>Luke Meyer — external expert grounding on AI's impact across LA workforce sectors (25 min)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">11:35</div>
           <div class="agenda-content">
             <h3>Faculty Proof-of-Concept</h3>
@@ -1288,14 +1448,14 @@
     </div>
 
     <!-- LATE MORNING ARC -->
-    <div class="agenda-arc reveal">
+    <div class="agenda-arc arc-midday reveal">
       <div class="arc-header midday">
         <span class="arc-num">ii.</span>
         <span class="arc-title">Late Morning · Build Cross-College Community</span>
         <div class="arc-tagline">Faculty meet faculty across institutional lines</div>
       </div>
       <div class="arc-body">
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">11:50</div>
           <div class="agenda-content">
             <h3>Cross-College Mixer</h3>
@@ -1303,7 +1463,7 @@
             <span class="agenda-tag activity">Facilitated Activity</span>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">12:20</div>
           <div class="agenda-content">
             <h3>Lunch · Track-Based Seating</h3>
@@ -1314,28 +1474,28 @@
     </div>
 
     <!-- AFTERNOON ARC -->
-    <div class="agenda-arc reveal">
+    <div class="agenda-arc arc-afternoon reveal">
       <div class="arc-header afternoon">
         <span class="arc-num">iii.</span>
         <span class="arc-title">Afternoon · Deliver Content &amp; Activate</span>
         <div class="arc-tagline">Track snapshots, logistics, and cross-track collaboration</div>
       </div>
       <div class="arc-body">
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">1:00</div>
           <div class="agenda-content">
             <h3>Four Track Snapshots</h3>
             <p>Vincent Calip walks the room through all four track journeys (35 min total)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">1:35</div>
           <div class="agenda-content">
             <h3>Program Logistics &amp; Canvas Shell Tour</h3>
             <p>Ruth Amanuel, Program Manager — calendar, stipend cadence, support infrastructure, brief Canvas Shell tour (15 min)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">1:50</div>
           <div class="agenda-content">
             <h3>Sector Pathway Cross-Pollination</h3>
@@ -1343,7 +1503,7 @@
             <span class="agenda-tag activity">Facilitated Activity</span>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">2:10</div>
           <div class="agenda-content">
             <h3>Leadership Photo</h3>
@@ -1351,14 +1511,14 @@
             <span class="agenda-tag photo">Photo Moment</span>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">2:15</div>
           <div class="agenda-content">
             <h3>Closing Call to Action</h3>
             <p>Vincent Calip — one ask, one date, one image (10 min)</p>
           </div>
         </div>
-        <div class="agenda-row">
+        <div class="agenda-row reveal">
           <div class="agenda-time">2:25</div>
           <div class="agenda-content">
             <h3>Open Networking</h3>
@@ -1376,7 +1536,13 @@
 <section class="tracks" id="tracks">
   <div class="container">
     <div class="section-eyebrow reveal"><span class="num">03</span>Four Pathways</div>
-    <h2 class="reveal">Parallel entry points — <em>not a ladder.</em></h2>
+    <div class="section-heading-row">
+      <h2 class="reveal">Parallel entry points — <em>not a ladder.</em></h2>
+      <a href="https://larc.instructure.com/courses/25011~155" class="btn-pill reveal" target="_blank" rel="noopener">
+        Explore on Canvas
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
     <p class="section-lede reveal">
       Each track serves a different faculty reality and exits with its own credential.
       You arrive at the Kick-Off already placed in one of the four.
@@ -1458,29 +1624,29 @@
     </p>
 
     <div class="faq-list reveal">
-      <details>
+      <details class="reveal">
         <summary>Do I need to RSVP separately for the Kick-Off?</summary>
-        <p>Track enrollment is complete and your seat is reserved. A short attendance confirmation will be sent by email; please respond by Friday, May 15 so we can finalize lunch counts and materials.</p>
+        <p>No separate RSVP form is needed. You may have already received — or will soon receive — an Outlook calendar invitation from Ruth Amanuel, the program manager. Please check your inbox and accept the invite; that serves as your attendance confirmation. If the invite hasn't arrived by mid-May, reach out to Ruth using the contact details below.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Who should attend from each college?</summary>
         <p>The convening is designed for enrolled track participants, plus institutional leadership — presidents, VPIs, deans of career education, and CTE coordinators. Each partner college is welcome to send leadership in addition to track faculty.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Will the program be recorded?</summary>
         <p>Leadership remarks and the vision moment will be recorded for later sharing with colleges that can't attend in person. Photos will be taken throughout the day; the group and leadership photos are intentional moments on the agenda.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>What should I bring?</summary>
         <p>Just yourself, a notebook or laptop, and a willingness to meet faculty from 17 other colleges. All materials — track guides, conversation cards, the regional Canvas Shell tour link — will be provided on-site and online.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>Is there a dress code?</summary>
         <p>Business casual. Comfortable shoes are recommended for the cross-college mixer activity.</p>
       </details>
-      <details>
+      <details class="reveal">
         <summary>How do I access the program after the Kick-Off?</summary>
-        <p>Your enrollment grants access to the regional <a href="https://lbcc.instructure.com/courses/121027" target="_blank" rel="noopener">Canvas course</a>, which serves as the program hub for all four tracks. You'll be walked through it during the afternoon session.</p>
+        <p>Your enrollment grants access to the regional <a href="https://larc.instructure.com/courses/25011~155" target="_blank" rel="noopener">Canvas course</a>, which serves as the program hub for all four tracks. You'll be walked through it during the afternoon session.</p>
       </details>
     </div>
   </div>
@@ -1527,7 +1693,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        LA-25 LARC AI Literacy &amp; Innovation Program
+        LA-25 LARC and LBCC AI Literacy &amp; Innovation Program
         <small>Long Beach City College, Lead Institution</small>
       </div>
       <div class="footer-partners">
@@ -1536,7 +1702,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div>&copy; 2026 Long Beach City College · LA-25 AI Literacy &amp; Innovation Program</div>
+      <div>&copy; 2026 Long Beach City College · LA-25 LARC and LBCC AI Literacy &amp; Innovation Program</div>
       <div>Page last updated May 2026</div>
     </div>
   </div>
@@ -1553,9 +1719,9 @@
   // EVENT CONFIG — edit these if the event date or details change
   // ============================================================
   var EVENT = {
-    title:    'LA-25 LARC AI Literacy & Innovation — Regional Kick-Off Convening',
+    title:    'LA-25 LARC and LBCC AI Literacy & Innovation — Regional Kick-Off Convening',
     location: 'Long Beach City College, Liberal Arts Campus, T-1200, 4901 East Carson Street, Long Beach, CA 90808',
-    description: 'Regional Kick-Off Convening for the LA-25 LARC AI Literacy & Innovation Program. Welcome and orientation for 150-200 attendees across 18 LA County community colleges.',
+    description: 'Regional Kick-Off Convening for the LA-25 LARC and LBCC AI Literacy & Innovation Program. Welcome and orientation for 150-200 attendees across 18 LA County community colleges.',
     // Start of the Welcome (10:00 AM Pacific, May 22, 2026 — PDT is UTC-7)
     startISO: '2026-05-22T10:00:00-07:00',
     // Hard end of networking (3:30 PM Pacific)
@@ -1669,6 +1835,37 @@
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
+  }
+
+  // ============================================================
+  // HERO PARALLAX
+  // Drives the decorative radial gradients at a different rate
+  // than scroll, creating a subtle depth shift as you leave the hero.
+  // Throttled via requestAnimationFrame; pauses once past the hero.
+  // ============================================================
+  var heroEl = document.querySelector('.hero');
+  var parallaxTicking = false;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function updateParallax() {
+    if (heroEl) {
+      var y = window.scrollY;
+      // Only update while hero is roughly in or near view (saves cycles)
+      if (y < window.innerHeight * 1.5) {
+        heroEl.style.setProperty('--scroll-y', y + 'px');
+      }
+    }
+    parallaxTicking = false;
+  }
+
+  if (!reduceMotion) {
+    window.addEventListener('scroll', function() {
+      if (!parallaxTicking) {
+        requestAnimationFrame(updateParallax);
+        parallaxTicking = true;
+      }
+    }, { passive: true });
+    updateParallax();
   }
 
   // ============================================================
