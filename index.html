@@ -8,10 +8,10 @@
      PAGE METADATA
      Edit these to update title, description, and social-share previews
      ============================================================ -->
-<title>Regional Kick-Off Convening — LA-25 LARC and LBCC AI Literacy &amp; Innovation</title>
-<meta name="description" content="A faculty-led initiative across 18 community colleges in Los Angeles County. Friday, May 22, 2026 — Long Beach City College.">
-<meta property="og:title" content="Regional Kick-Off Convening — LA-25 LARC and LBCC AI Literacy &amp; Innovation">
-<meta property="og:description" content="Friday, May 22, 2026 · Long Beach City College · 10:00 AM – 2:30 PM PT">
+<title>Regional Kick-Off Convening — LA-25 LARC and LBCC AI Literacy &amp; Innovation Project</title>
+<meta name="description" content="A faculty-led initiative connecting community colleges across the Los Angeles region. Friday, May 22, 2026 — Long Beach City College.">
+<meta property="og:title" content="Regional Kick-Off Convening — LA-25 LARC and LBCC AI Literacy &amp; Innovation Project">
+<meta property="og:description" content="Friday, May 22, 2026 · Long Beach City College · 10:00 AM – 2:00 PM PT">
 <meta property="og:type" content="website">
 
 <!-- Fonts: Fraunces (display) + Manrope (body) -->
@@ -138,24 +138,29 @@
   }
   .nav-brand {
     display: flex;
-    align-items: center;
-    gap: 0.7rem;
+    flex-direction: column;
+    gap: 0.15rem;
     font-family: var(--serif);
-    font-weight: 700;
     color: var(--navy);
-    font-size: 1.05rem;
-    line-height: 1;
+    line-height: 1.2;
+    text-decoration: none;
+    max-width: 62%;
   }
-  .nav-brand small {
-    display: block;
-    font-family: var(--sans);
-    font-size: 0.62rem;
+  .nav-brand-title {
+    font-size: 0.88rem;
     font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .nav-brand-sub {
+    font-family: var(--sans);
+    font-size: 0.6rem;
+    font-weight: 700;
     color: var(--ink-mute);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-top: 0.2rem;
+    margin-top: 0.1rem;
   }
+  .nav-brand:hover .nav-brand-title { color: var(--navy-600); }
   .nav-links {
     display: flex;
     gap: 1.6rem;
@@ -229,6 +234,14 @@
   }
   .hero .container { position: relative; z-index: 1; }
 
+  .hero-divider {
+    width: 64px;
+    height: 3px;
+    background: var(--gold);
+    margin-bottom: 2rem;
+    border-radius: 2px;
+  }
+
   .hero-eyebrow {
     display: inline-flex;
     align-items: center;
@@ -239,13 +252,6 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
-  }
-  .hero-eyebrow::before {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--navy);
-    display: inline-block;
   }
 
   .hero h1 {
@@ -499,6 +505,11 @@
   .section-heading-row .btn-pill.reveal {
     transition-delay: 0.08s;
   }
+  .heading-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
 
   /* ============================================================
      SECTION SCAFFOLDING
@@ -662,55 +673,52 @@
     margin-top: 0.15rem;
   }
 
-  .arc-body { padding: 0.5rem 0; }
-  .agenda-row {
-    display: grid;
-    grid-template-columns: 100px 1fr auto;
-    gap: 1.5rem;
-    padding: 1.1rem 1.75rem;
+  .arc-body { padding: 1.25rem 1.75rem 1.5rem; }
+  .arc-intro,
+  .arc-outro {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .arc-intro { margin-bottom: 1rem; }
+  .arc-outro { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+  .arc-activities {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .arc-activities li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    padding: 0.65rem 0;
     border-bottom: 1px solid var(--rule);
-    align-items: start;
-  }
-  .agenda-row:last-child { border-bottom: none; }
-  .agenda-time {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.1rem;
-    color: var(--navy);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: -0.01em;
-  }
-  /* Time color picks up the arc identity */
-  .arc-morning   .agenda-time { color: var(--navy); }
-  .arc-midday    .agenda-time { color: #8B1E3C; }
-  .arc-afternoon .agenda-time { color: var(--t4); }
-  .agenda-content h3 {
-    font-family: var(--sans);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 0.25rem;
-    letter-spacing: -0.005em;
-  }
-  .agenda-content p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--ink-soft);
     line-height: 1.55;
   }
-  .agenda-tag {
-    display: inline-block;
-    margin-top: 0.4rem;
-    padding: 0.18rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.66rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .arc-activities li:last-child { border-bottom: none; }
+  .arc-activities li::before {
+    content: "→";
+    flex-shrink: 0;
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: var(--gold);
+    transform: translateY(-1px);
   }
-  .agenda-tag.photo    { background: rgba(0, 51, 102, 0.08); color: var(--navy); }
-  .agenda-tag.activity { background: rgba(15, 110, 86, 0.1); color: var(--t2); }
-  .agenda-tag.tbd      { background: rgba(133, 79, 11, 0.1); color: var(--t3); }
-
+  .arc-morning   .arc-activities li::before { color: var(--navy); }
+  .arc-midday    .arc-activities li::before { color: #8B1E3C; }
+  .arc-afternoon .arc-activities li::before { color: var(--t4); }
+  .arc-activities strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .muted {
+    color: var(--ink-mute);
+    font-size: 0.85em;
+    font-style: italic;
+  }
   /* ============================================================
      TRACKS
      ============================================================ */
@@ -926,6 +934,8 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
+    line-height: 1.45;
+    min-height: 2.9em;
   }
   .contact-person .name {
     font-family: var(--serif);
@@ -994,6 +1004,18 @@
     max-width: 380px;
   }
   .footer-partners span { color: var(--gold); font-weight: 700; }
+
+  /* Footer links — gold for visibility on dark navy, subtle underline on hover */
+  footer a {
+    color: var(--gold);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  footer a:hover {
+    color: #FFD27A;
+    border-bottom-color: var(--gold);
+  }
   .footer-bottom {
     padding-top: 1.5rem;
     display: flex;
@@ -1062,16 +1084,6 @@
   .hero .container > .reveal:nth-child(5) { transition-delay: 0.24s; }
   .hero .container > .reveal:nth-child(6) { transition-delay: 0.30s; }
 
-  /* Agenda rows reveal individually as you scroll through each arc */
-  .agenda-row.reveal {
-    transform: translateY(20px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .agenda-row.reveal.in {
-    transform: translateY(0);
-  }
-
   /* FAQ items reveal as you reach them */
   details.reveal {
     transform: translateY(16px);
@@ -1086,7 +1098,6 @@
     .reveal,
     section h2.reveal,
     .overview-pull.reveal,
-    .agenda-row.reveal,
     details.reveal {
       opacity: 1 !important;
       transform: none !important;
@@ -1180,12 +1191,7 @@
       gap: 0.85rem;
       margin-left: 1.2rem;
     }
-    .agenda-row {
-      grid-template-columns: 1fr;
-      gap: 0.25rem;
-      padding: 1rem 1.25rem;
-    }
-    .agenda-time { font-size: 0.9rem; }
+    .arc-body { padding: 1rem 1.25rem 1.25rem; }
     .arc-header { padding: 1.25rem 1.25rem 1rem; }
     .hero-meta { gap: 1.5rem; }
     .footer-bottom { flex-direction: column; align-items: flex-start; }
@@ -1212,8 +1218,9 @@
      ============================================================ -->
 <nav class="topnav">
   <div class="container">
-    <a href="#top" class="nav-brand">
-      <span>LA-25 Kick-Off<small>LARC and LBCC AI Literacy &amp; Innovation</small></span>
+    <a href="https://losangelesrc.org/projects/round-10-ai-literacy-innovation-project/" class="nav-brand" target="_blank" rel="noopener">
+      <span class="nav-brand-title">LA-25 LARC and LBCC AI Literacy &amp; Innovation Project</span>
+      <small class="nav-brand-sub">Led by LBCC · Powered by LARC</small>
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
     <ul class="nav-links" id="navLinks">
@@ -1232,13 +1239,14 @@
      ============================================================ -->
 <header class="hero" id="top">
   <div class="container">
-    <div class="hero-eyebrow reveal">LA-25 LARC and LBCC AI Literacy &amp; Innovation Program</div>
+    <div class="hero-divider reveal" aria-hidden="true"></div>
+    <div class="hero-eyebrow reveal">LA-25 LARC and LBCC AI Literacy &amp; Innovation Project</div>
 
     <h1 class="reveal">Regional <em>Kick-Off</em><br>Convening <span class="accent">2026</span></h1>
 
     <p class="hero-lede reveal">
-      A faculty-led initiative across 18 community colleges in
-      Los Angeles County. This is where we begin together.
+      A faculty-led initiative connecting community colleges
+      across the Los Angeles region. This is where we begin together.
     </p>
 
     <!-- COUNTDOWN -->
@@ -1279,15 +1287,15 @@
       </div>
       <div class="hero-meta-item">
         <div class="hero-meta-key">Time</div>
-        <div class="hero-meta-val">10:00 AM – 2:30 PM<small>Doors at 9:30 · networking to 3:30</small></div>
+        <div class="hero-meta-val">10:00 AM – 2:00 PM<small>Doors at 9:30 · networking to 3:30</small></div>
       </div>
       <div class="hero-meta-item">
         <div class="hero-meta-key">Venue</div>
         <div class="hero-meta-val">Long Beach City College<small>Liberal Arts Campus · T-1200</small></div>
       </div>
       <div class="hero-meta-item">
-        <div class="hero-meta-key">Convening</div>
-        <div class="hero-meta-val">150–200 attendees<small>Leadership &amp; faculty · 18 colleges</small></div>
+        <div class="hero-meta-key">Audience</div>
+        <div class="hero-meta-val">Faculty &amp; Leadership<small>Community colleges across the LA region</small></div>
       </div>
     </div>
 
@@ -1319,7 +1327,7 @@
         <div class="stats-quadrants">
           <div class="stat reveal">
             <div class="stat-num">18</div>
-            <div class="stat-label">LARC Colleges</div>
+            <div class="stat-label">Community Colleges</div>
           </div>
           <div class="stat reveal">
             <div class="stat-num">4</div>
@@ -1331,21 +1339,22 @@
           </div>
           <div class="stat reveal">
             <div class="stat-num">1</div>
-            <div class="stat-label">Region</div>
+            <div class="stat-label">LA Region</div>
           </div>
         </div>
       </div>
       <div class="overview-body reveal">
         <p>
-          Across 18 community colleges in Los Angeles County, faculty are reckoning with that
-          question every day. The LA-25 LARC and LBCC AI Literacy &amp; Innovation Program is our regional
-          answer — and Long Beach City College is honored to serve as the lead institution.
+          This regional convening brings together faculty, administrators, and institutional
+          leaders from community colleges across the Los Angeles region to explore AI literacy,
+          innovation, curriculum integration, and equitable implementation strategies in higher
+          education.
         </p>
         <p>
-          The Kick-Off Convening is where the program goes from architecture to motion. It is
-          welcome, orientation, and first contact with the cohort you will spend the next 18
-          months building with. Track enrollment is complete; this day is about meeting your
-          people, understanding the shape of the work, and leaving energized.
+          The LA-25 LARC and LBCC AI Literacy &amp; Innovation Project is our regional answer —
+          and Long Beach City College is honored to serve as the lead institution. The Kick-Off
+          Convening is where the project goes from architecture to motion: welcome, orientation,
+          and first contact with the cohort you will spend the months ahead building with.
         </p>
       </div>
     </div>
@@ -1372,78 +1381,17 @@
         <div class="arc-tagline">Leadership voices, vision, and a live faculty proof-of-concept</div>
       </div>
       <div class="arc-body">
-        <div class="agenda-row reveal">
-          <div class="agenda-time">9:30</div>
-          <div class="agenda-content">
-            <h3>Doors Open</h3>
-            <p>Coffee, registration, lanyard distribution, and informal networking</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">10:00</div>
-          <div class="agenda-content">
-            <h3>Welcome · Project Lead</h3>
-            <p>Dean Koby Moridzadeh, Acting Dean of Career Education (5 min)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">10:05</div>
-          <div class="agenda-content">
-            <h3>Run of Day</h3>
-            <p>Vincent Calip, Faculty Lead Coordinator (3 min)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">10:08</div>
-          <div class="agenda-content">
-            <h3>LBCC Leadership Remarks</h3>
-            <p>Dr. Mike Muñoz, President · Dr. Douglas, VPI · Gita Runkle, AVP of Economic Development (18 min total)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">10:26</div>
-          <div class="agenda-content">
-            <h3>Regional Welcome</h3>
-            <p>Dr. Narineh Makijan, LA Regional Consortium — pre-recorded video remarks (10 min)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">10:36</div>
-          <div class="agenda-content">
-            <h3>Stand-and-Be-Recognized + Peer-College Voice</h3>
-            <p>Recognition of leadership across the 18 participating colleges, followed by a peer institutional voice (15 min)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">10:51</div>
-          <div class="agenda-content">
-            <h3>Group Photo</h3>
-            <p>Full-room photo at peak attendance (4 min)</p>
-            <span class="agenda-tag photo">Photo Moment</span>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">10:55</div>
-          <div class="agenda-content">
-            <h3>Vision Moment · "Why Now, Why Us"</h3>
-            <p>Vincent Calip — the four-track architecture and the regional charge (15 min)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">11:10</div>
-          <div class="agenda-content">
-            <h3>AI Landscape · Center of Excellence</h3>
-            <p>Luke Meyer — external expert grounding on AI's impact across LA workforce sectors (25 min)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">11:35</div>
-          <div class="agenda-content">
-            <h3>Faculty Proof-of-Concept</h3>
-            <p>Live AI integration demo from a real classroom (15 min)</p>
-            <span class="agenda-tag tbd">Presenter TBD</span>
-          </div>
-        </div>
+        <p class="arc-intro">Doors open at <strong>9:30 AM</strong> for coffee, registration, and informal networking. The formal convening begins at <strong>10:00 AM</strong>.</p>
+        <ul class="arc-activities">
+          <li><strong>Welcome &amp; Run of Show</strong> from project leadership</li>
+          <li><strong>LBCC Leadership Remarks</strong> — institutional welcome from the host campus</li>
+          <li><strong>Regional Welcome</strong> from the Los Angeles Regional Consortium</li>
+          <li><strong>Recognition of Participating Institutions</strong> and peer-college voice</li>
+          <li><strong>Group Photo</strong> <span class="muted">(timing TBD)</span></li>
+          <li><strong>Vision Moment</strong> — "Why Now, Why Us"</li>
+          <li><strong>AI Landscape Briefing</strong> — external expert grounding on AI's impact across LA workforce sectors</li>
+          <li><strong>Faculty Proof-of-Concept</strong> — a live AI integration demo from a real classroom</li>
+        </ul>
       </div>
     </div>
 
@@ -1455,21 +1403,10 @@
         <div class="arc-tagline">Faculty meet faculty across institutional lines</div>
       </div>
       <div class="arc-body">
-        <div class="agenda-row reveal">
-          <div class="agenda-time">11:50</div>
-          <div class="agenda-content">
-            <h3>Cross-College Mixer</h3>
-            <p>Same-track, different-college pairing across two timed rounds (30 min)</p>
-            <span class="agenda-tag activity">Facilitated Activity</span>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">12:20</div>
-          <div class="agenda-content">
-            <h3>Lunch · Track-Based Seating</h3>
-            <p>Track-color tablecloths, conversation prompt cards on every table (40 min)</p>
-          </div>
-        </div>
+        <ul class="arc-activities">
+          <li><strong>Cross-College Mixer</strong> — facilitated same-track, different-college pairings</li>
+          <li><strong>Networking Lunch</strong> with track-based seating and conversation prompts</li>
+        </ul>
       </div>
     </div>
 
@@ -1481,50 +1418,14 @@
         <div class="arc-tagline">Track snapshots, logistics, and cross-track collaboration</div>
       </div>
       <div class="arc-body">
-        <div class="agenda-row reveal">
-          <div class="agenda-time">1:00</div>
-          <div class="agenda-content">
-            <h3>Four Track Snapshots</h3>
-            <p>Vincent Calip walks the room through all four track journeys (35 min total)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">1:35</div>
-          <div class="agenda-content">
-            <h3>Program Logistics &amp; Canvas Shell Tour</h3>
-            <p>Ruth Amanuel, Program Manager — calendar, stipend cadence, support infrastructure, brief Canvas Shell tour (15 min)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">1:50</div>
-          <div class="agenda-content">
-            <h3>Sector Pathway Cross-Pollination</h3>
-            <p>Mixed-track quads imagine a student in a LARC priority sector (20 min)</p>
-            <span class="agenda-tag activity">Facilitated Activity</span>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">2:10</div>
-          <div class="agenda-content">
-            <h3>Leadership Photo</h3>
-            <p>Leadership-only photo during transition (5 min)</p>
-            <span class="agenda-tag photo">Photo Moment</span>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">2:15</div>
-          <div class="agenda-content">
-            <h3>Closing Call to Action</h3>
-            <p>Vincent Calip — one ask, one date, one image (10 min)</p>
-          </div>
-        </div>
-        <div class="agenda-row reveal">
-          <div class="agenda-time">2:25</div>
-          <div class="agenda-content">
-            <h3>Open Networking</h3>
-            <p>Continued connection until 3:30 PM hard end</p>
-          </div>
-        </div>
+        <ul class="arc-activities">
+          <li><strong>Four Track Snapshots</strong> — a walk through each track's journey</li>
+          <li><strong>Project Logistics &amp; Canvas Tour</strong> — calendar, support infrastructure, and a brief Canvas shell tour</li>
+          <li><strong>Sector Pathway Cross-Pollination</strong> — facilitated mixed-track activity imagining a student in a LARC priority sector</li>
+          <li><strong>Leadership Photo</strong> <span class="muted">(timing TBD)</span></li>
+          <li><strong>Closing Call to Action</strong></li>
+        </ul>
+        <p class="arc-outro">The formal convening concludes at <strong>2:00 PM</strong>. Networking space remains available until <strong>3:30 PM</strong> for those wishing to continue conversations informally.</p>
       </div>
     </div>
   </div>
@@ -1538,10 +1439,16 @@
     <div class="section-eyebrow reveal"><span class="num">03</span>Four Pathways</div>
     <div class="section-heading-row">
       <h2 class="reveal">Parallel entry points — <em>not a ladder.</em></h2>
-      <a href="https://larc.instructure.com/courses/25011~155" class="btn-pill reveal" target="_blank" rel="noopener">
-        Explore on Canvas
-        <span aria-hidden="true">→</span>
-      </a>
+      <div class="heading-actions">
+        <a href="https://losangelesrc.org/projects/round-10-ai-literacy-innovation-project/" class="btn-pill reveal" target="_blank" rel="noopener">
+          Project Website
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="https://larc.instructure.com/courses/25011~155" class="btn-pill reveal" target="_blank" rel="noopener">
+          Explore on Canvas
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
     <p class="section-lede reveal">
       Each track serves a different faculty reality and exits with its own credential.
@@ -1600,7 +1507,7 @@
       </div>
       <div class="logistics-card reveal">
         <h3><span class="icon">c</span>What to Expect</h3>
-        <p>Continental coffee at 9:30, lunch with your track cohort at 12:20, and afternoon refreshments during networking.</p>
+        <p>Continental coffee at 9:30, networking lunch with your track cohort during the late morning block, and afternoon refreshments during networking.</p>
         <p>Wear comfortable shoes — the day includes brief facilitated movement during the mixer.</p>
       </div>
       <div class="logistics-card reveal">
@@ -1626,14 +1533,14 @@
     <div class="faq-list reveal">
       <details class="reveal">
         <summary>Do I need to RSVP separately for the Kick-Off?</summary>
-        <p>No separate RSVP form is needed. You may have already received — or will soon receive — an Outlook calendar invitation from Ruth Amanuel, the program manager. Please check your inbox and accept the invite; that serves as your attendance confirmation. If the invite hasn't arrived by mid-May, reach out to Ruth using the contact details below.</p>
+        <p>No separate RSVP form is needed. You may have already received — or will soon receive — an Outlook calendar invitation from Ruth Amanuel, the project manager. Please check your inbox and accept the invite; that serves as your attendance confirmation. If the invite hasn't arrived by mid-May, reach out to Ruth using the contact details below.</p>
       </details>
       <details class="reveal">
         <summary>Who should attend from each college?</summary>
         <p>The convening is designed for enrolled track participants, plus institutional leadership — presidents, VPIs, deans of career education, and CTE coordinators. Each partner college is welcome to send leadership in addition to track faculty.</p>
       </details>
       <details class="reveal">
-        <summary>Will the program be recorded?</summary>
+        <summary>Will the convening be recorded?</summary>
         <p>Leadership remarks and the vision moment will be recorded for later sharing with colleges that can't attend in person. Photos will be taken throughout the day; the group and leadership photos are intentional moments on the agenda.</p>
       </details>
       <details class="reveal">
@@ -1645,8 +1552,8 @@
         <p>Business casual. Comfortable shoes are recommended for the cross-college mixer activity.</p>
       </details>
       <details class="reveal">
-        <summary>How do I access the program after the Kick-Off?</summary>
-        <p>Your enrollment grants access to the regional <a href="https://larc.instructure.com/courses/25011~155" target="_blank" rel="noopener">Canvas course</a>, which serves as the program hub for all four tracks. You'll be walked through it during the afternoon session.</p>
+        <summary>How do I access the project after the Kick-Off?</summary>
+        <p>Your enrollment grants access to the regional <a href="https://larc.instructure.com/courses/25011~155" target="_blank" rel="noopener">Canvas course</a>, which serves as the project hub for all four tracks. You'll be walked through it during the afternoon session.</p>
       </details>
     </div>
   </div>
@@ -1665,7 +1572,7 @@
 
     <div class="contact-grid">
       <div class="contact-person reveal">
-        <div class="role">Program Manager · First Point of Contact</div>
+        <div class="role">Project Manager · First Point of Contact</div>
         <div class="name">Ruth Amanuel</div>
         <div class="title">Logistics, accommodations, day-of questions</div>
         <a href="mailto:ramanuel@lbcc.edu">ramanuel@lbcc.edu</a>
@@ -1679,7 +1586,7 @@
       <div class="contact-person reveal">
         <div class="role">Faculty Lead Coordinator</div>
         <div class="name">Vincent Calip</div>
-        <div class="title">Program direction, track questions, faculty inquiries</div>
+        <div class="title">Project direction, track questions, faculty inquiries</div>
         <a href="mailto:vcalip@lbcc.edu">vcalip@lbcc.edu</a>
       </div>
     </div>
@@ -1693,17 +1600,17 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        LA-25 LARC and LBCC AI Literacy &amp; Innovation Program
-        <small>Long Beach City College, Lead Institution</small>
+        LA-25 LARC and LBCC AI Literacy &amp; Innovation Project
+        <small><a href="https://www.lbcc.edu/" target="_blank" rel="noopener">Long Beach City College</a>, Lead Institution</small>
       </div>
       <div class="footer-partners">
-        In partnership with the <span>Los Angeles Regional Consortium</span><br>
-        Funded by the <span>California Community Colleges Strong Workforce Program, Round 10</span>
+        In partnership with the <a href="https://losangelesrc.org/" target="_blank" rel="noopener"><span>Los Angeles Regional Consortium</span></a><br>
+        Funded by the <a href="https://www.cccco.edu/" target="_blank" rel="noopener"><span>California Community Colleges Strong Workforce Program, Round 10</span></a>
       </div>
     </div>
     <div class="footer-bottom">
-      <div>&copy; 2026 Long Beach City College · LA-25 LARC and LBCC AI Literacy &amp; Innovation Program</div>
-      <div>Page last updated May 2026</div>
+      <div>&copy; 2026 Long Beach City College · LA-25 LARC and LBCC AI Literacy &amp; Innovation Project</div>
+      <div>May 2026</div>
     </div>
   </div>
 </footer>
@@ -1719,13 +1626,13 @@
   // EVENT CONFIG — edit these if the event date or details change
   // ============================================================
   var EVENT = {
-    title:    'LA-25 LARC and LBCC AI Literacy & Innovation — Regional Kick-Off Convening',
+    title:    'LA-25 LARC and LBCC AI Literacy & Innovation Project — Regional Kick-Off Convening',
     location: 'Long Beach City College, Liberal Arts Campus, T-1200, 4901 East Carson Street, Long Beach, CA 90808',
-    description: 'Regional Kick-Off Convening for the LA-25 LARC and LBCC AI Literacy & Innovation Program. Welcome and orientation for 150-200 attendees across 18 LA County community colleges.',
+    description: 'Regional Kick-Off Convening for the LA-25 LARC and LBCC AI Literacy & Innovation Project. Welcome and orientation for faculty and leadership from community colleges across the Los Angeles region.',
     // Start of the Welcome (10:00 AM Pacific, May 22, 2026 — PDT is UTC-7)
     startISO: '2026-05-22T10:00:00-07:00',
-    // Hard end of networking (3:30 PM Pacific)
-    endISO:   '2026-05-22T15:30:00-07:00'
+    // Formal convening ends at 2:00 PM (networking continues informally until 3:30)
+    endISO:   '2026-05-22T14:00:00-07:00'
   };
 
   // ============================================================
