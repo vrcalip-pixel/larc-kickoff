@@ -839,6 +839,7 @@
   }
   .arc-activities li {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     gap: 0.7rem;
     padding: 0.65rem 0;
@@ -860,6 +861,62 @@
   .arc-morning   .arc-activities li::before { color: var(--navy); }
   .arc-midday    .arc-activities li::before { color: #8B1E3C; }
   .arc-afternoon .arc-activities li::before { color: var(--t4); }
+
+  /* Contextual CTA placed within an agenda activity — forces a new line via
+     flex-basis: 100% and indents slightly to align with the text above. */
+  .activity-cta-wrap {
+    flex-basis: 100%;
+    margin: 0.5rem 0 0.15rem;
+    padding-left: 1.65rem;
+  }
+
+  /* Inline text link used within FAQ answers / body paragraphs. */
+  .inline-link {
+    color: var(--navy);
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 51, 102, 0.35);
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+  .inline-link:hover,
+  .inline-link:focus-visible {
+    color: var(--navy-900);
+    text-decoration-color: var(--gold);
+    text-decoration-thickness: 2px;
+  }
+  .inline-link:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  .activity-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1.05rem;
+    background: var(--paper);
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  .activity-cta:hover,
+  .activity-cta:focus-visible {
+    background: var(--navy);
+    color: var(--paper);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.18);
+  }
+  .activity-cta:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
   .arc-activities strong {
     color: var(--ink);
     font-weight: 700;
@@ -1732,7 +1789,14 @@
         <ul class="arc-activities">
           <li><strong>Four Track Snapshots</strong> — a walk through each track's journey</li>
           <li><strong>Project Logistics &amp; Canvas Tour</strong> — calendar, support infrastructure, and a brief Canvas shell tour</li>
-          <li><strong>Sector Pathway Cross-Pollination</strong> — facilitated mixed-track activity imagining a student in a LARC priority sector</li>
+          <li><strong>Sector Pathway Cross-Pollination</strong> — facilitated mixed-track activity imagining a student in a LARC priority sector
+            <div class="activity-cta-wrap">
+              <a class="activity-cta" href="https://vrcalip-pixel.github.io/larc-conversation-cards/" target="_blank" rel="noopener noreferrer" aria-label="Open the AI Conversation Cards — opens in new tab">
+                Open the AI Conversation Cards
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </li>
           <li><strong>Leadership Photo</strong> <span class="muted">(timing TBD)</span></li>
           <li><strong>Closing Call to Action</strong></li>
         </ul>
@@ -1871,15 +1935,17 @@
       </details>
       <details class="reveal">
         <summary>What should I bring?</summary>
-        <p>Just yourself, a notebook or laptop, and a willingness to meet faculty from 17 other colleges. All materials — track guides, conversation cards, the regional Canvas Shell tour link — will be provided on-site and online.</p>
+        <p>Just yourself, a notebook or laptop, and a willingness to meet faculty from 17 other colleges. All materials — track guides, <a href="https://vrcalip-pixel.github.io/larc-conversation-cards/" target="_blank" rel="noopener noreferrer" class="inline-link">conversation cards</a>, the regional Canvas Shell tour link — will be provided on-site and online.</p>
       </details>
       <details class="reveal">
         <summary>Is there a dress code?</summary>
         <p>Business casual. Comfortable shoes are recommended for the cross-college mixer activity.</p>
       </details>
       <details class="reveal">
-        <summary>How do I access the project after the Kick-Off?</summary>
-        <p>Your enrollment grants access to the regional <a href="https://larc.instructure.com/courses/25011~155" target="_blank" rel="noopener">Canvas course</a>, which serves as the project hub for all four tracks. You'll be walked through it during the afternoon session.</p>
+        <summary>How do I get access to the Canvas course?</summary>
+        <p>The regional Canvas course is reserved for <strong>accepted program participants only</strong> — faculty who completed the signup form and were formally recruited and accepted into the program by their sector pathway lead.</p>
+        <p>If that's you, <strong>no action is needed.</strong> The lead college (Long Beach City College) will onboard you onto Canvas automatically using the email you provided on your signup form. You'll receive your Canvas invitation in the days following the Kick-Off. Once enrolled, you can <a href="https://larc.instructure.com/courses/25011~155" target="_blank" rel="noopener noreferrer" class="inline-link">open the regional Canvas course directly</a>.</p>
+        <p>If you are an accepted participant and have not received Canvas access by the week after the Kick-Off, please contact Ruth Amanuel at <a href="mailto:ramanuel@lbcc.edu" class="inline-link">ramanuel@lbcc.edu</a> first — she'll verify your enrollment and resolve it directly. Accepted participants who need a manual fallback may <a href="https://larc.instructure.com/enroll/AGNNY9" target="_blank" rel="noopener noreferrer" class="inline-link">self-enroll here</a>.</p>
       </details>
     </div>
   </div>
