@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kick-Off Survey — AI Literacy and Innovation Project</title>
+<meta name="description" content="Share your feedback on the May 22, 2026 Regional Kick-Off Convening. Your input shapes future convenings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-900:  #001A33;
+    --navy-800:  #002347;
+    --navy:      #003366;
+    --navy-600:  #0A4D80;
+    --navy-100:  #C8D9EC;
+
+    --gold:      #FFB81C;
+    --gold-dim:  #E0A314;
+    --crimson:   #C8102E;
+
+    --cream:     #F8F4ED;
+    --cream-2:   #F2EBDD;
+    --paper:     #FFFFFF;
+    --ink:       #14171A;
+    --ink-soft:  #3D434A;
+    --ink-mute:  #6B7280;
+    --rule:      #E5DECE;
+
+    --serif: 'Fraunces', 'Source Serif Pro', Georgia, serif;
+    --sans:  'Manrope', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* === Skip link === */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--navy);
+    color: var(--paper);
+    padding: 0.6rem 1rem;
+    z-index: 100;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .skip-link:focus { left: 1rem; top: 1rem; }
+
+  /* === Top bar === */
+  .topbar {
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    text-decoration: none;
+    color: var(--navy-900);
+  }
+  .brand-title {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .brand-sub {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .back-link {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .back-link:hover, .back-link:focus-visible {
+    background: var(--navy);
+    color: var(--paper);
+  }
+  .back-link:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  /* === Hero === */
+  .survey-hero {
+    padding: 3rem 0 2rem;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 0.85rem;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--navy-900);
+    margin: 0 0 1rem;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--navy);
+  }
+  .lede {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 38rem;
+    margin: 0 0 1rem;
+  }
+  .confidentiality {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.45rem 0.95rem;
+    background: var(--cream-2);
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+
+  /* === Form === */
+  form { margin: 1.5rem 0 4rem; }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 2.5rem;
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 26, 51, 0.04);
+    border: 1px solid var(--rule);
+  }
+  .section-num {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.4rem;
+  }
+  legend {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--navy-900);
+    margin-bottom: 0.4rem;
+    padding: 0;
+    line-height: 1.2;
+  }
+  .section-help {
+    font-size: 0.92rem;
+    color: var(--ink-mute);
+    margin: 0 0 1.5rem;
+  }
+
+  /* Text inputs */
+  .field {
+    margin-bottom: 1.25rem;
+  }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--navy-900);
+    margin-bottom: 0.4rem;
+  }
+  .field label .req {
+    color: var(--crimson);
+    margin-left: 0.15rem;
+  }
+  input[type="text"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1.5px solid var(--rule);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  input[type="text"]:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.12);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 110px;
+    font-family: var(--sans);
+  }
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23003366' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px 8px;
+    padding-right: 2.5rem;
+  }
+
+  /* === Likert scale === */
+  .likert {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .likert:last-of-type { border-bottom: none; padding-bottom: 0; }
+  .likert:first-of-type { padding-top: 0; }
+  .likert-question {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy-900);
+    margin-bottom: 0.85rem;
+    line-height: 1.45;
+  }
+  .likert-question .topic {
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .likert-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .likert-anchor {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .likert-options {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 0;
+  }
+  .likert-options label {
+    position: relative;
+    flex: 1 1 0;
+    max-width: 52px;
+    min-width: 38px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: var(--paper);
+    border: 1.5px solid var(--rule);
+    border-radius: 50%;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    transition: all 0.18s ease;
+    user-select: none;
+  }
+  .likert-options label:hover {
+    border-color: var(--navy);
+    color: var(--navy);
+    transform: translateY(-1px);
+  }
+  .likert-options input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .likert-options input[type="radio"]:checked + .likert-num {
+    color: var(--paper);
+  }
+  .likert-options label:has(input:checked) {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--paper);
+  }
+  .likert-options input[type="radio"]:focus-visible + .likert-num {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+    border-radius: 50%;
+  }
+  .likert-num {
+    pointer-events: none;
+  }
+
+  /* Mobile: stack anchors above/below the options instead of beside them */
+  @media (max-width: 560px) {
+    .likert-row {
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .likert-options {
+      order: 2;
+      width: 100%;
+    }
+    .likert-anchor--low {
+      order: 1;
+      align-self: flex-start;
+    }
+    .likert-anchor--high {
+      order: 3;
+      align-self: flex-end;
+    }
+  }
+
+  /* === Submit === */
+  .form-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  .btn-submit {
+    background: var(--navy);
+    color: var(--paper);
+    border: none;
+    padding: 0.95rem 2rem;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-submit:hover {
+    background: var(--navy-900);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 51, 102, 0.22);
+  }
+  .btn-submit:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+  }
+  .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .submit-hint {
+    font-size: 0.82rem;
+    color: var(--ink-mute);
+  }
+
+  /* === Status messages === */
+  .status {
+    display: none;
+    margin: 1rem 0;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+  .status.error {
+    display: block;
+    background: rgba(200, 16, 46, 0.08);
+    border: 1px solid rgba(200, 16, 46, 0.25);
+    color: var(--crimson);
+  }
+
+  /* === Success state === */
+  .success-card {
+    display: none;
+    text-align: center;
+    padding: 4rem 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    margin: 2rem 0 4rem;
+  }
+  .success-card.visible { display: block; }
+  .success-card .icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--navy-900);
+  }
+  .success-card h2 {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--navy-900);
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+  }
+  .success-card p {
+    color: var(--ink-soft);
+    max-width: 32rem;
+    margin: 0 auto 1.5rem;
+  }
+  .success-card .btn-home {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--paper);
+    padding: 0.85rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .success-card .btn-home:hover {
+    background: var(--navy-900);
+    transform: translateY(-1px);
+  }
+
+  /* === Footer === */
+  footer {
+    background: var(--navy-900);
+    color: var(--navy-100);
+    padding: 2rem 0;
+    font-size: 0.82rem;
+    text-align: center;
+  }
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  .hide { display: none !important; }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to survey</a>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-title">AI Literacy and Innovation Project</span>
+      <span class="brand-sub">Fueled by LARC · Led by LBCC</span>
+    </a>
+    <a class="back-link" href="index.html">← Back to event page</a>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="survey-hero">
+      <div class="eyebrow">Regional Kick-Off · May 22, 2026</div>
+      <h1>Kick-Off <em>Survey</em></h1>
+      <p class="lede">
+        Your feedback helps us continue to develop quality convenings and project sessions for the LA-25 LARC AI Literacy &amp; Innovation Project. Thank you for taking a few minutes to reflect on the day.
+      </p>
+      <div class="confidentiality">All responses are held in strict confidence.</div>
+    </section>
+
+    <!-- Survey form -->
+    <form id="surveyForm" novalidate>
+
+      <!-- Section 1: Participant info -->
+      <fieldset>
+        <div class="section-num">Section 01</div>
+        <legend>About you</legend>
+        <p class="section-help">For attendance records and follow-up if you share suggestions we'd like to discuss.</p>
+
+        <div class="field">
+          <label for="name">Participant name <span class="req" aria-hidden="true">*</span><span class="sr-only">required</span></label>
+          <input type="text" id="name" name="name" required autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="college">Participant college <span class="req" aria-hidden="true">*</span><span class="sr-only">required</span></label>
+          <select id="college" name="college" required>
+            <option value="">— Select your college —</option>
+            <option>Cerritos College</option>
+            <option>Citrus College</option>
+            <option>Compton College</option>
+            <option>East Los Angeles College</option>
+            <option>El Camino College</option>
+            <option>Glendale Community College</option>
+            <option>Long Beach City College (lead)</option>
+            <option>Los Angeles City College</option>
+            <option>Los Angeles Harbor College</option>
+            <option>Los Angeles Mission College</option>
+            <option>Los Angeles Pierce College</option>
+            <option>Los Angeles Southwest College</option>
+            <option>Los Angeles Trade-Technical College</option>
+            <option>Los Angeles Valley College</option>
+            <option>Mt. San Antonio College</option>
+            <option>Pasadena City College</option>
+            <option>Rio Hondo College</option>
+            <option>Santa Monica College</option>
+            <option>West Los Angeles College</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- Section 2: Rating scale -->
+      <fieldset>
+        <div class="section-num">Section 02</div>
+        <legend>How did the day land?</legend>
+        <p class="section-help">
+          Please rate each statement on a scale of 1 to 5, where <strong>1 = Strongly Disagree</strong> and <strong>5 = Strongly Agree</strong>.
+        </p>
+
+        <div class="likert" role="radiogroup" aria-labelledby="q-presenter">
+          <div class="likert-question" id="q-presenter">
+            <span class="topic">Presenter.</span> The speaker was engaging and informative on the AI landscape in community colleges and the region.
+          </div>
+          <div class="likert-row">
+            <span class="likert-anchor likert-anchor--low" aria-hidden="true">Strongly Disagree</span>
+            <div class="likert-options">
+              <label><input type="radio" name="presenter" value="1" required><span class="likert-num">1</span></label>
+              <label><input type="radio" name="presenter" value="2"><span class="likert-num">2</span></label>
+              <label><input type="radio" name="presenter" value="3"><span class="likert-num">3</span></label>
+              <label><input type="radio" name="presenter" value="4"><span class="likert-num">4</span></label>
+              <label><input type="radio" name="presenter" value="5"><span class="likert-num">5</span></label>
+            </div>
+            <span class="likert-anchor likert-anchor--high" aria-hidden="true">Strongly Agree</span>
+          </div>
+        </div>
+
+        <div class="likert" role="radiogroup" aria-labelledby="q-overview">
+          <div class="likert-question" id="q-overview">
+            <span class="topic">Project Overview.</span> The information shared was well organized and easy to understand.
+          </div>
+          <div class="likert-row">
+            <span class="likert-anchor likert-anchor--low" aria-hidden="true">Strongly Disagree</span>
+            <div class="likert-options">
+              <label><input type="radio" name="projectOverview" value="1" required><span class="likert-num">1</span></label>
+              <label><input type="radio" name="projectOverview" value="2"><span class="likert-num">2</span></label>
+              <label><input type="radio" name="projectOverview" value="3"><span class="likert-num">3</span></label>
+              <label><input type="radio" name="projectOverview" value="4"><span class="likert-num">4</span></label>
+              <label><input type="radio" name="projectOverview" value="5"><span class="likert-num">5</span></label>
+            </div>
+            <span class="likert-anchor likert-anchor--high" aria-hidden="true">Strongly Agree</span>
+          </div>
+        </div>
+
+        <div class="likert" role="radiogroup" aria-labelledby="q-canvas">
+          <div class="likert-question" id="q-canvas">
+            <span class="topic">Canvas Overview.</span> The session content was clearly explained and easy to follow.
+          </div>
+          <div class="likert-row">
+            <span class="likert-anchor likert-anchor--low" aria-hidden="true">Strongly Disagree</span>
+            <div class="likert-options">
+              <label><input type="radio" name="canvasOverview" value="1" required><span class="likert-num">1</span></label>
+              <label><input type="radio" name="canvasOverview" value="2"><span class="likert-num">2</span></label>
+              <label><input type="radio" name="canvasOverview" value="3"><span class="likert-num">3</span></label>
+              <label><input type="radio" name="canvasOverview" value="4"><span class="likert-num">4</span></label>
+              <label><input type="radio" name="canvasOverview" value="5"><span class="likert-num">5</span></label>
+            </div>
+            <span class="likert-anchor likert-anchor--high" aria-hidden="true">Strongly Agree</span>
+          </div>
+        </div>
+
+        <div class="likert" role="radiogroup" aria-labelledby="q-tracks">
+          <div class="likert-question" id="q-tracks">
+            <span class="topic">Track Breakdown.</span> The overview provided a clear understanding of the four project tracks.
+          </div>
+          <div class="likert-row">
+            <span class="likert-anchor likert-anchor--low" aria-hidden="true">Strongly Disagree</span>
+            <div class="likert-options">
+              <label><input type="radio" name="trackBreakdown" value="1" required><span class="likert-num">1</span></label>
+              <label><input type="radio" name="trackBreakdown" value="2"><span class="likert-num">2</span></label>
+              <label><input type="radio" name="trackBreakdown" value="3"><span class="likert-num">3</span></label>
+              <label><input type="radio" name="trackBreakdown" value="4"><span class="likert-num">4</span></label>
+              <label><input type="radio" name="trackBreakdown" value="5"><span class="likert-num">5</span></label>
+            </div>
+            <span class="likert-anchor likert-anchor--high" aria-hidden="true">Strongly Agree</span>
+          </div>
+        </div>
+
+        <div class="likert" role="radiogroup" aria-labelledby="q-overall">
+          <div class="likert-question" id="q-overall">
+            <span class="topic">Overall Feedback.</span> My understanding of the project increased as a result of this Kick-Off event.
+          </div>
+          <div class="likert-row">
+            <span class="likert-anchor likert-anchor--low" aria-hidden="true">Strongly Disagree</span>
+            <div class="likert-options">
+              <label><input type="radio" name="overallFeedback" value="1" required><span class="likert-num">1</span></label>
+              <label><input type="radio" name="overallFeedback" value="2"><span class="likert-num">2</span></label>
+              <label><input type="radio" name="overallFeedback" value="3"><span class="likert-num">3</span></label>
+              <label><input type="radio" name="overallFeedback" value="4"><span class="likert-num">4</span></label>
+              <label><input type="radio" name="overallFeedback" value="5"><span class="likert-num">5</span></label>
+            </div>
+            <span class="likert-anchor likert-anchor--high" aria-hidden="true">Strongly Agree</span>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Section 3: Open-ended feedback -->
+      <fieldset>
+        <div class="section-num">Section 03</div>
+        <legend>In your own words</legend>
+        <p class="section-help">Optional, but where the most useful feedback usually lives.</p>
+
+        <div class="field">
+          <label for="suggestions">What suggestions do you have to help improve or grow this project in the future?</label>
+          <textarea id="suggestions" name="suggestions" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="additionalComments">Additional comments or questions</label>
+          <textarea id="additionalComments" name="additionalComments" rows="4"></textarea>
+        </div>
+      </fieldset>
+
+      <!-- Status message (hidden by default, shown on error) -->
+      <div id="statusMsg" class="status" role="alert" aria-live="polite"></div>
+
+      <!-- Submit -->
+      <div class="form-footer">
+        <button type="submit" class="btn-submit" id="submitBtn">
+          Submit Survey
+          <span aria-hidden="true">→</span>
+        </button>
+        <span class="submit-hint">Required fields are marked with <span style="color: var(--crimson);">*</span></span>
+      </div>
+    </form>
+
+    <!-- Success state (shown after successful submission) -->
+    <div id="successCard" class="success-card" role="status" aria-live="polite">
+      <div class="icon" aria-hidden="true">✓</div>
+      <h2>Thank you</h2>
+      <p>
+        Your feedback has been received. Reflections from across the region directly shape the project's path forward — your time today helps us build a stronger program for the months ahead.
+      </p>
+      <a href="index.html" class="btn-home">Back to event page</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>LA-25 LARC AI Literacy &amp; Innovation Project · Long Beach City College · May 22, 2026</p>
+  </div>
+</footer>
+
+<script>
+  // =========================================================================
+  // CONFIGURATION — replace with your deployed Apps Script Web App URL.
+  // See SURVEY-SETUP-GUIDE.md for the one-time setup steps.
+  // =========================================================================
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxzmPuR9Qy0DSSZL-5tRsTR4out9Zh9AjCsx1ElFvTdYj4eOLXOH2H43Sg1QEzOyhc/exec';
+
+  const form = document.getElementById('surveyForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusMsg = document.getElementById('statusMsg');
+  const successCard = document.getElementById('successCard');
+
+  function showError(message) {
+    statusMsg.className = 'status error';
+    statusMsg.textContent = message;
+    statusMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function clearError() {
+    statusMsg.className = 'status';
+    statusMsg.textContent = '';
+  }
+
+  function validateForm() {
+    clearError();
+
+    // Native required-field check first
+    if (!form.checkValidity()) {
+      // Find first invalid field and scroll to it
+      const firstInvalid = form.querySelector(':invalid');
+      if (firstInvalid) {
+        firstInvalid.focus();
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      showError('Please complete all required fields before submitting.');
+      return false;
+    }
+
+    return true;
+  }
+
+  function collectFormData() {
+    const formData = new FormData(form);
+    return {
+      name:                formData.get('name')                || '',
+      college:             formData.get('college')             || '',
+      presenter:           formData.get('presenter')           || '',
+      projectOverview:     formData.get('projectOverview')     || '',
+      canvasOverview:      formData.get('canvasOverview')      || '',
+      trackBreakdown:      formData.get('trackBreakdown')      || '',
+      overallFeedback:     formData.get('overallFeedback')     || '',
+      suggestions:         formData.get('suggestions')         || '',
+      additionalComments:  formData.get('additionalComments')  || '',
+      submittedAt:         new Date().toISOString(),
+    };
+  }
+
+  async function submitSurvey(data) {
+    // Apps Script Web Apps don't support CORS preflight, so we use
+    // Content-Type: text/plain to avoid triggering a preflight OPTIONS request.
+    // Apps Script can still read e.postData.contents as a JSON string.
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',  // Fire-and-forget; opaque response
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+      },
+      body: JSON.stringify(data),
+      redirect: 'follow',
+    });
+    // With no-cors, we can't read the response status — but if no exception
+    // was thrown, the request was sent successfully.
+    return true;
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    if (APPS_SCRIPT_URL === 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+      showError(
+        'Survey backend is not configured yet. Please set APPS_SCRIPT_URL in survey.html ' +
+        '(see SURVEY-SETUP-GUIDE.md for instructions).'
+      );
+      return;
+    }
+
+    const data = collectFormData();
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Submitting… <span aria-hidden="true">…</span>';
+
+    try {
+      await submitSurvey(data);
+
+      // Show success state, hide form
+      form.classList.add('hide');
+      successCard.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Submit Survey <span aria-hidden="true">→</span>';
+      showError(
+        'We could not submit your response. Please try again, or contact Ruth Amanuel ' +
+        '(ramanuel@lbcc.edu) so she can record your feedback directly.'
+      );
+      console.error('Survey submission error:', err);
+    }
+  });
+</script>
+
+</body>
+</html>
