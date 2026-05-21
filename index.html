@@ -336,7 +336,12 @@
   /* ============================================================
      COUNTDOWN
      ============================================================ */
-  .countdown-wrap {
+  /* ============================================================
+     EVENT STATUS — countdown / live / wrapped
+     Three panels share one container; only one shows at a time
+     based on the data-state attribute set by JS.
+     ============================================================ */
+  .event-status {
     margin: 0 0 3rem;
     padding: 2.25rem 2rem 2rem;
     background: var(--paper);
@@ -345,15 +350,16 @@
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02), 0 14px 40px -20px rgba(0, 51, 102, 0.18);
     position: relative;
   }
-  .countdown-wrap::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 2rem;
-    right: 2rem;
-    height: 3px;
-    background: linear-gradient(90deg, var(--navy) 0%, var(--navy) 25%, var(--t2) 25%, var(--t2) 50%, var(--t3) 50%, var(--t3) 75%, var(--t4) 75%, var(--t4) 100%);
-  }
+  /* show only the panel matching the current state */
+  .status-panel { display: none; }
+  .event-status[data-state="before"]   .status-panel--before   { display: block; }
+  .event-status[data-state="doors"]    .status-panel--during   { display: block; }
+  .event-status[data-state="during"]   .status-panel--during   { display: block; }
+  .event-status[data-state="after"]    .status-panel--after    { display: block; }
+
+  /* keep legacy countdown class for backwards compat (unused) */
+  .countdown-wrap { display: none; }
+
   .countdown-label {
     font-size: 0.72rem;
     font-weight: 700;
@@ -365,21 +371,6 @@
     align-items: center;
     gap: 0.75rem;
   }
-  .countdown-label .pulse-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--crimson);
-    display: inline-block;
-    box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.7);
-    animation: pulse 2.2s infinite;
-  }
-  @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.6); }
-    70%  { box-shadow: 0 0 0 10px rgba(200, 16, 46, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(200, 16, 46, 0); }
-  }
-
   .countdown-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -410,26 +401,204 @@
     margin-top: 0.75rem;
   }
 
-  .countdown-live {
-    display: none;
-    text-align: center;
-    padding: 1rem 0 0.25rem;
+  /* ===== DURING STATE — live now/next ===== */
+  .status-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
   }
-  .countdown-live .live-headline {
+  .status-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--crimson);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .status-time {
     font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    color: var(--navy);
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--navy-900);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
   }
-  .countdown-live .live-sub {
-    font-size: 1rem;
+  .status-section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--ink-mute);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .status-now { margin-bottom: 1.5rem; }
+  .status-session {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 500;
+    color: var(--navy-900);
+    line-height: 1.15;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.015em;
+  }
+  .status-session-meta {
+    font-size: 0.88rem;
     color: var(--ink-soft);
+    margin-bottom: 0.85rem;
   }
-  .countdown-wrap.is-live .countdown-grid,
-  .countdown-wrap.is-live .countdown-label { display: none; }
-  .countdown-wrap.is-live .countdown-live { display: block; }
+  .status-progress {
+    width: 100%;
+    height: 6px;
+    background: var(--rule);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .status-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim) 0%, var(--gold) 100%);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 1s ease;
+  }
+  .status-next {
+    padding: 1rem 0 1.25rem;
+    margin-bottom: 1.25rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .status-next-line {
+    font-size: 1rem;
+    color: var(--navy-900);
+    font-weight: 600;
+  }
+  .status-next-time {
+    color: var(--ink-mute);
+    font-weight: 400;
+    margin-left: 0.4rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .status-materials-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+  .status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1.05rem;
+    background: var(--paper);
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .status-chip:hover, .status-chip:focus-visible {
+    background: var(--navy);
+    color: var(--paper);
+    transform: translateY(-1px);
+  }
+  .status-chip:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  .status-chip--primary {
+    background: var(--gold);
+    color: var(--navy-900);
+    border-color: var(--gold);
+  }
+  .status-chip--primary:hover, .status-chip--primary:focus-visible {
+    background: var(--gold-dim);
+    color: var(--navy-900);
+    border-color: var(--gold-dim);
+  }
+
+  /* ===== AFTER STATE — kick-off wrapped ===== */
+  .status-wrap-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .status-wrap-check {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--navy-900);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .status-wrap-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ink-mute);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .status-wrap-headline {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 3.2vw, 2.2rem);
+    font-weight: 500;
+    color: var(--navy-900);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.75rem;
+  }
+  .status-wrap-body {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+    max-width: 36rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 560px) {
+    .event-status { padding: 1.75rem 1.5rem 1.5rem; }
+    .countdown-grid { gap: 0.5rem; }
+    .cd-tile { padding: 0.25rem 0.1rem; }
+    .status-session { font-size: 1.4rem; }
+  }
+  .countdown-wrap::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 3px;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy) 25%, var(--t2) 25%, var(--t2) 50%, var(--t3) 50%, var(--t3) 75%, var(--t4) 75%, var(--t4) 100%);
+  }
+
+  /* Pulse animation — used by .pulse-dot for the live indicator */
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--crimson);
+    display: inline-block;
+    box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.7);
+    animation: pulse 2.2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(200, 16, 46, 0.6); }
+    70%  { box-shadow: 0 0 0 10px rgba(200, 16, 46, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(200, 16, 46, 0); }
+  }
 
   /* ============================================================
      HERO META + CTA
@@ -1224,6 +1393,37 @@
   .contact .section-eyebrow { color: var(--gold); }
   .contact .section-lede { color: var(--navy-100); }
 
+  /* Contact section header layout — eyebrow + h2 + lede on the left,
+     LBCC Workforce Education seal sits in the natural blank space on the right. */
+  .contact-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .contact-header-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 640px;
+  }
+  .contact-header-mark {
+    flex-shrink: 0;
+    margin-top: 0.5rem;
+  }
+  .contact-header-mark img {
+    display: block;
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    opacity: 0.92;
+  }
+  @media (max-width: 720px) {
+    .contact-header { gap: 1.5rem; }
+    .contact-header-mark img { width: 84px; height: 84px; }
+  }
+
   .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -1280,6 +1480,7 @@
     position: relative;
     z-index: 1;
   }
+
   .footer-top {
     display: flex;
     flex-wrap: wrap;
@@ -1639,33 +1840,91 @@
     </p>
 
     <!-- COUNTDOWN -->
-    <div class="countdown-wrap reveal" id="countdown">
-      <div class="countdown-label">
-        <span class="pulse-dot" aria-hidden="true"></span>
-        <span>Counting down to the Welcome</span>
+    <div class="event-status reveal" id="eventStatus" data-state="before">
+
+      <!-- ====== BEFORE STATE: countdown to event start ====== -->
+      <div class="status-panel status-panel--before">
+        <div class="countdown-label">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span>Counting down to the Welcome</span>
+        </div>
+        <div class="countdown-grid" aria-hidden="true">
+          <div class="cd-tile">
+            <div class="cd-num" id="cdDays">00</div>
+            <div class="cd-label">Days</div>
+          </div>
+          <div class="cd-tile">
+            <div class="cd-num" id="cdHours">00</div>
+            <div class="cd-label">Hours</div>
+          </div>
+          <div class="cd-tile">
+            <div class="cd-num" id="cdMins">00</div>
+            <div class="cd-label">Minutes</div>
+          </div>
+          <div class="cd-tile">
+            <div class="cd-num" id="cdSecs">00</div>
+            <div class="cd-label">Seconds</div>
+          </div>
+        </div>
       </div>
-      <div class="countdown-grid" aria-hidden="true">
-        <div class="cd-tile">
-          <div class="cd-num" id="cdDays">00</div>
-          <div class="cd-label">Days</div>
+
+      <!-- ====== DURING STATE: live now/next/progress/materials ====== -->
+      <div class="status-panel status-panel--during">
+        <div class="status-header">
+          <span class="status-live-badge">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span>Live</span>
+          </span>
+          <span class="status-time" id="statusTime">—</span>
         </div>
-        <div class="cd-tile">
-          <div class="cd-num" id="cdHours">00</div>
-          <div class="cd-label">Hours</div>
+
+        <div class="status-now">
+          <div class="status-section-label">Now</div>
+          <div class="status-session" id="statusNowSession">—</div>
+          <div class="status-session-meta" id="statusNowMeta">—</div>
+          <div class="status-progress" aria-hidden="true">
+            <div class="status-progress-fill" id="statusProgressFill"></div>
+          </div>
         </div>
-        <div class="cd-tile">
-          <div class="cd-num" id="cdMins">00</div>
-          <div class="cd-label">Minutes</div>
+
+        <div class="status-next" id="statusNextWrap">
+          <div class="status-section-label">Up Next</div>
+          <div class="status-next-line"><span id="statusNextSession">—</span> <span class="status-next-time" id="statusNextTime">—</span></div>
         </div>
-        <div class="cd-tile">
-          <div class="cd-num" id="cdSecs">00</div>
-          <div class="cd-label">Seconds</div>
+
+        <div class="status-materials">
+          <div class="status-section-label">Materials</div>
+          <div class="status-materials-row">
+            <a class="status-chip" href="https://vrcalip-pixel.github.io/larc-conversation-cards/" target="_blank" rel="noopener noreferrer">
+              Conversation Cards <span aria-hidden="true">↗</span>
+            </a>
+            <a class="status-chip" href="https://larc.instructure.com/courses/25011~155" target="_blank" rel="noopener noreferrer">
+              Canvas Course <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="countdown-live" id="countdownLive">
-        <div class="live-headline">We're here. <em>Welcome.</em></div>
-        <div class="live-sub">The Regional Kick-Off Convening is underway at LBCC.</div>
+
+      <!-- ====== AFTER STATE: kick-off wrapped, action chips ====== -->
+      <div class="status-panel status-panel--after">
+        <div class="status-wrap-header">
+          <span class="status-wrap-check" aria-hidden="true">✓</span>
+          <span class="status-wrap-eyebrow">Kick-Off Wrapped</span>
+        </div>
+        <div class="status-wrap-headline">The work continues.</div>
+        <p class="status-wrap-body">
+          Thank you for spending the day with us. Reflections from across the region directly shape what comes next — and the project hub remains open for ongoing track engagement.
+        </p>
+        <div class="status-materials-row">
+          <a class="status-chip status-chip--primary" href="survey.html">
+            Share Feedback <span aria-hidden="true">→</span>
+          </a>
+          <a class="status-chip" href="https://larc.instructure.com/courses/25011~155" target="_blank" rel="noopener noreferrer">
+            Canvas Course <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
+
     </div>
 
     <!-- HERO META -->
@@ -1814,7 +2073,6 @@
           <li><strong>LBCC Leadership Remarks</strong> — institutional welcome from the host campus</li>
           <li><strong>Regional Welcome</strong> from the Los Angeles Regional Consortium</li>
           <li><strong>Recognition of Participating Institutions</strong> and peer-college voice</li>
-          <li><strong>Group Photo</strong> <span class="muted">(timing TBD)</span></li>
           <li><strong>Vision Moment</strong> — "Why Now, Why Us"</li>
           <li><strong>AI Landscape Briefing</strong> — external expert grounding on AI's impact across LA workforce sectors</li>
         </ul>
@@ -1855,7 +2113,6 @@
               </a>
             </div>
           </li>
-          <li><strong>Leadership Photo</strong> <span class="muted">(timing TBD)</span></li>
           <li><strong>Closing Call to Action</strong></li>
         </ul>
         <p class="arc-outro">The formal convening concludes at <strong>2:00 PM</strong>. Networking space remains available until <strong>3:30 PM</strong> for those wishing to continue conversations informally.</p>
@@ -1989,7 +2246,7 @@
       </details>
       <details class="reveal">
         <summary>Will the convening be recorded?</summary>
-        <p>Leadership remarks and the vision moment will be recorded for later sharing with colleges that can't attend in person. Photos will be taken throughout the day; the group and leadership photos are intentional moments on the agenda.</p>
+        <p>Leadership remarks and the vision moment will be recorded for later sharing with colleges that can't attend in person. Photos will be taken throughout the day for use in regional communications.</p>
       </details>
       <details class="reveal">
         <summary>What should I bring?</summary>
@@ -2038,11 +2295,18 @@
      ============================================================ -->
 <section class="contact" id="contact">
   <div class="container">
-    <div class="section-eyebrow reveal"><span class="num">06</span>Get in Touch</div>
-    <h2 class="reveal">The team behind <em>the day.</em></h2>
-    <p class="section-lede reveal">
-      Questions about logistics, accommodations, or your track? Reach the right person directly.
-    </p>
+    <div class="contact-header">
+      <div class="contact-header-text">
+        <div class="section-eyebrow reveal"><span class="num">06</span>Get in Touch</div>
+        <h2 class="reveal">The team behind <em>the day.</em></h2>
+        <p class="section-lede reveal">
+          Questions about logistics, accommodations, or your track? Reach the right person directly.
+        </p>
+      </div>
+      <div class="contact-header-mark reveal" aria-hidden="true">
+        <img src="data:image/png;base64,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vXz22Wdjbr0kaJwRfabAVN55HP1k8uTJbNWqFUny0UcfZbNmzeKSRsuIO/7bQCBwza/OqyTjbbxeL0je8tNPP2266KKLOHny5OjECMOwHEM4Iemxxx4jAI4YMYLdu3fn+eefz/37959U9k9GOXVCQTwgS/uNeM9RGgid/weDQT777LMcM2YM//GPfzASiZz0u4cOHWJKSgpbt27N8847j+np6db06dNNB1Akd5AcH8f7tF+lVykn/bYfBkdPdnb2eJJbitvUMkmq3NxcaprGl156KfZl165dOW7cuGKjmCQDgQC/+eYb7tu3r0pDl+MBA4EAu3Xrxo4dO/K3v/0ta9SowWuvvbYYWBzQjhkzRqWmppqhUMhaunQpH330Uebk5OwieX9WVlZatVc5xTC1a9euFNM0byf5Tbxx9u/fbwCwvv/++9hnt956K/v06RMziGOUL774ggDYvHlztmvXjrNnzy5GLh1j7969m4cOHYp9tnXr1mKewQmVzzzzDO+44w5edtllnDBhQuy3HJA+99xzTE9Pj51/8+bNBMCvv/46/tosy7KMDRs2cODAgbQXlG0kOZFkjWqgVCBMxX020LKs+ZZlFZLk4MGD2bVrV65du9aYO3euBUC9/vrrxbInknzppZfYsGFDBgIBvvbaawTA3bt3xwztAKdbt27885//TJLs2bMnR48eHSPajvE/++wzAuCUKVO4ePFibtmypZjQRpIPPvhgjJs459A0jStWrLCihxnx7i1CcinJIePHj3fFyw+/6FT5TAInNzf3fJJ/zs3NXXPbbbexU6dObNGiBR9++GGSNMyodS3HO0yaNImNGzfm+vXr+dZbbxEAd+7ceRJgLrzwQj744IO844472K9fv1h2E0+29+3bR7/fz4ULF/K9997j0qVLT+ImmzZtIgBOnjxZffLJJ+bAgQONli1bloxgm0g+QrJD/L1lZmZWA6UyQ1U8eDRNA8nuR44ceTQYDK4pOYXCWYfTr18/o1mzZmarVq0UAOXwHsfAznvfvn2dRXlct25dMa8RT2YbNGjARo0a8fLLL+djjz1Gkso0TUXStLMbY9GiRapr16684IILOHbsWO7du9cByVMke5fQos7sko9fIzkuWWATQiA7O7ujzQEWWJa11wFOjx49uHDhQhYUFBAAN23apKJ4Mk373SJpdezYUfXv31/dd999qm7duioQCCh79priiZ0OrDp16pjTp083bYAmYs8HTdNcwuiCvwunTp0qS6re1VnPzwCe0rbXYnS91IUkx+3atet/jh8/vork3ueffz709ttvl2rdjh078oUXXiBJdu/enYMGDSo1tb733nv58ssvswQPOUDyc5Kvkry7sLCwe3yWUwIk57Q3Eb8k8CBaTGVpRbisrKy0OnXqNAVwnv1qAaCJUqq+lDJ9w4YNNdPT01OaNm3qCQQCemZmphg4cKDp8/lCAMIA8gHkIvrAzAMA9iBaRN0FYJ8QIrfkOefNm6eNGDFCoJxtwM6l9v+eoPnYgYc9uAAAAABJRU5ErkJggg==" alt="">
+      </div>
+    </div>
 
     <div class="contact-grid">
       <div class="contact-person reveal">
@@ -2074,6 +2338,7 @@
      ============================================================ -->
 <footer>
   <div class="container">
+
     <div class="footer-top">
       <div class="footer-brand">
         LA-25 LARC and LBCC AI Literacy &amp; Innovation Project
@@ -2116,47 +2381,174 @@
   };
 
   // ============================================================
-  // COUNTDOWN
+  // EVENT STATUS — countdown / live now-next / wrapped
+  //
+  // Three states render in the same #eventStatus container:
+  //   - "before"  → countdown to the 10 AM welcome
+  //   - "doors"   → 9-10 AM: doors open, morning arc up next
+  //   - "during"  → 10 AM-2 PM: now/next/progress + materials
+  //   - "after"   → after 2 PM May 22: kick-off wrapped + actions
+  //
+  // The arc structure mirrors the Run of Show on this page.
+  // Edit SCHEDULE to adjust session boundaries.
+  //
+  // Preview override: append ?preview=before|doors|during|after to URL
+  // to force a state. Useful for stakeholder previews before the event.
   // ============================================================
-  var target = new Date(EVENT.startISO).getTime();
-  var endTarget = new Date(EVENT.endISO).getTime();
-  var cd = document.getElementById('countdown');
+
+  // Pacific Time anchor for May 22, 2026. Each session is in PT.
+  // The "T-08:00" offset is PST. May 22 falls in PDT (UTC-07:00) — use that.
+  var EVENT_DAY = '2026-05-22';
+  var TZ_OFFSET = '-07:00'; // PDT in May
+
+  function pt(timeStr) {
+    // Build an ISO timestamp in Pacific Time for the given HH:MM on event day
+    return new Date(EVENT_DAY + 'T' + timeStr + ':00' + TZ_OFFSET).getTime();
+  }
+
+  var SCHEDULE = {
+    doorsOpen:  pt('09:00'),   // doors open / check-in & networking
+    morning: {
+      start: pt('10:00'),
+      end:   pt('11:30'),
+      title: 'Morning · Inspire & Build Buy-In',
+      next:  'Midday · Cross-College Mixer'
+    },
+    midday: {
+      start: pt('11:30'),
+      end:   pt('12:45'),
+      title: 'Midday · Cross-College Mixer',
+      next:  'Afternoon · Track Engagement'
+    },
+    afternoon: {
+      start: pt('12:45'),
+      end:   pt('14:00'),
+      title: 'Afternoon · Track Engagement',
+      next:  'Closing remarks & networking'
+    }
+  };
+
+  var statusEl       = document.getElementById('eventStatus');
+  // Before-state countdown tiles
   var dEl = document.getElementById('cdDays');
   var hEl = document.getElementById('cdHours');
   var mEl = document.getElementById('cdMins');
   var sEl = document.getElementById('cdSecs');
-  var liveEl = document.getElementById('countdownLive');
+  // During-state elements
+  var statusTimeEl       = document.getElementById('statusTime');
+  var statusNowSessionEl = document.getElementById('statusNowSession');
+  var statusNowMetaEl    = document.getElementById('statusNowMeta');
+  var statusNextSessEl   = document.getElementById('statusNextSession');
+  var statusNextTimeEl   = document.getElementById('statusNextTime');
+  var statusProgFillEl   = document.getElementById('statusProgressFill');
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
-  function tick() {
-    var now = Date.now();
-    var diff = target - now;
+  // Format a Unix-ms timestamp as "10:55 AM PT" in Pacific Time, regardless
+  // of the visitor's local timezone. Long Beach time is what matters on the
+  // ground during the event.
+  function formatPT(ms) {
+    var d = new Date(ms);
+    var s = d.toLocaleTimeString('en-US', {
+      timeZone: 'America/Los_Angeles',
+      hour: 'numeric', minute: '2-digit', hour12: true
+    });
+    return s + ' PT';
+  }
 
-    if (diff <= 0) {
-      // Event has started — show "live" or "happened" state
-      cd.classList.add('is-live');
-      if (now > endTarget) {
-        liveEl.innerHTML =
-          '<div class="live-headline">Thank you for joining us.</div>' +
-          '<div class="live-sub">The Kick-Off has concluded. Recap and photos coming soon.</div>';
-      }
-      return;
+  function determineState(now) {
+    // Allow ?preview= URL override for stakeholder demos
+    var preview = new URLSearchParams(window.location.search).get('preview');
+    if (preview && ['before', 'doors', 'during', 'after'].indexOf(preview) >= 0) {
+      return preview;
     }
+    if (now < SCHEDULE.doorsOpen)         return 'before';
+    if (now < SCHEDULE.morning.start)     return 'doors';
+    if (now < SCHEDULE.afternoon.end)     return 'during';
+    return 'after';
+  }
 
+  function getCurrentArc(now) {
+    if (now < SCHEDULE.morning.start)     return null;
+    if (now < SCHEDULE.morning.end)       return SCHEDULE.morning;
+    if (now < SCHEDULE.midday.end)        return SCHEDULE.midday;
+    if (now < SCHEDULE.afternoon.end)     return SCHEDULE.afternoon;
+    return null;
+  }
+
+  function renderBefore(now) {
+    var diff = SCHEDULE.morning.start - now;
+    if (diff <= 0) return;
     var days  = Math.floor(diff / (1000 * 60 * 60 * 24));
     var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     var mins  = Math.floor((diff / (1000 * 60)) % 60);
     var secs  = Math.floor((diff / 1000) % 60);
-
-    dEl.textContent = pad(days);
-    hEl.textContent = pad(hours);
-    mEl.textContent = pad(mins);
-    sEl.textContent = pad(secs);
+    if (dEl) dEl.textContent = pad(days);
+    if (hEl) hEl.textContent = pad(hours);
+    if (mEl) mEl.textContent = pad(mins);
+    if (sEl) sEl.textContent = pad(secs);
   }
 
-  tick();
-  setInterval(tick, 1000);
+  function renderDuring(now) {
+    statusTimeEl.textContent = formatPT(now);
+
+    var preview = new URLSearchParams(window.location.search).get('preview');
+    var arc;
+
+    if (preview === 'during') {
+      // Demo mode: show midpoint of midday arc
+      arc = SCHEDULE.midday;
+      now = arc.start + Math.floor((arc.end - arc.start) * 0.45);
+      statusTimeEl.textContent = formatPT(now);
+    } else if (preview === 'doors') {
+      // Demo mode: 9:30 AM PT
+      now = SCHEDULE.doorsOpen + 30 * 60 * 1000;
+      statusTimeEl.textContent = formatPT(now);
+    }
+
+    if (now < SCHEDULE.morning.start) {
+      // Doors-open window
+      statusNowSessionEl.textContent = 'Doors Open · Check-in & Networking';
+      var minsToStart = Math.max(0, Math.ceil((SCHEDULE.morning.start - now) / 60000));
+      statusNowMetaEl.textContent = 'Program begins in ' + minsToStart + ' min · 10:00 AM PT';
+      statusNextSessEl.textContent = SCHEDULE.morning.title;
+      statusNextTimeEl.textContent = '· starts 10:00 AM';
+      var doorsTotal = SCHEDULE.morning.start - SCHEDULE.doorsOpen;
+      var doorsElapsed = now - SCHEDULE.doorsOpen;
+      var pct = Math.max(0, Math.min(100, (doorsElapsed / doorsTotal) * 100));
+      statusProgFillEl.style.width = pct + '%';
+      return;
+    }
+
+    arc = arc || getCurrentArc(now);
+    if (!arc) return;
+
+    statusNowSessionEl.textContent = arc.title;
+    var endsAt = formatPT(arc.end);
+    var minsLeft = Math.max(0, Math.ceil((arc.end - now) / 60000));
+    statusNowMetaEl.textContent = 'Ends at ' + endsAt + ' · ' + minsLeft + ' min remaining';
+    statusNextSessEl.textContent = arc.next;
+    statusNextTimeEl.textContent = '· ' + formatPT(arc.end);
+
+    var arcTotal = arc.end - arc.start;
+    var arcElapsed = now - arc.start;
+    var arcPct = Math.max(0, Math.min(100, (arcElapsed / arcTotal) * 100));
+    statusProgFillEl.style.width = arcPct + '%';
+  }
+
+  function refresh() {
+    var now = Date.now();
+    var state = determineState(now);
+    statusEl.setAttribute('data-state', state);
+    if (state === 'before')                                       renderBefore(now);
+    else if (state === 'doors' || state === 'during')             renderDuring(now);
+    // 'after' state is purely static markup — no JS rendering needed
+  }
+
+  refresh();
+  // Tick every second during before/during for the countdown + clock;
+  // 'after' state is static so the tick is harmless.
+  setInterval(refresh, 1000);
 
   // ============================================================
   // ADD TO CALENDAR (.ics download)
