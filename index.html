@@ -1314,10 +1314,17 @@
   /* ============================================================
      FEEDBACK / EXIT SURVEY CALLOUT
      ============================================================ */
-  .feedback-callout {
+  .feedback-callout,
+  .meetings-callout {
     padding: 4rem 0 5rem;
     background: var(--cream-2);
     position: relative;
+  }
+  /* Slight separation between the two stacked callouts so they don't read
+     as one continuous band of cream — a subtle hairline at the top of meetings. */
+  .meetings-callout {
+    border-top: 1px solid rgba(0, 26, 51, 0.06);
+    padding-top: 4rem;
   }
   .feedback-card {
     background: var(--paper);
@@ -1358,7 +1365,8 @@
     font-style: italic;
   }
   @media (max-width: 720px) {
-    .feedback-callout { padding: 3rem 0; }
+    .feedback-callout,
+    .meetings-callout { padding: 3rem 0; }
     .feedback-card {
       grid-template-columns: 1fr;
       padding: 1.75rem 1.5rem;
@@ -1808,6 +1816,7 @@
       <li><a href="#logistics">Logistics</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#meetings">Meetings</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
   </div>
@@ -2291,13 +2300,37 @@
 </section>
 
 <!-- ============================================================
+     MONTHLY MEETING SCHEDULING
+     ============================================================ -->
+<section class="meetings-callout" id="meetings">
+  <div class="container">
+    <div class="feedback-card reveal">
+      <div class="feedback-text">
+        <div class="section-eyebrow"><span class="num">07</span>Ongoing Collaboration</div>
+        <h2>Help us pick a meeting time.</h2>
+        <p>
+          Throughout the duration of the project, we'll convene monthly across all participating colleges. Share your scheduling preferences so we can land on a recurring cadence that works for as many of you as possible.
+        </p>
+      </div>
+      <div class="feedback-action">
+        <a href="meeting-survey.html" class="btn btn-primary">
+          Open the Scheduling Survey
+          <span aria-hidden="true">→</span>
+        </a>
+        <span class="feedback-meta">Takes about 2 minutes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      CONTACT
      ============================================================ -->
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-header">
       <div class="contact-header-text">
-        <div class="section-eyebrow reveal"><span class="num">06</span>Get in Touch</div>
+        <div class="section-eyebrow reveal"><span class="num">08</span>Get in Touch</div>
         <h2 class="reveal">The team behind <em>the day.</em></h2>
         <p class="section-lede reveal">
           Questions about logistics, accommodations, or your track? Reach the right person directly.
