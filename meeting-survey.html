@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monthly Meeting Scheduling Survey — AI Literacy and Innovation Project</title>
+<meta name="description" content="Help us identify a recurring monthly meeting cadence for the LARC AI Literacy & Innovation Project.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-900:  #001A33;
+    --navy-800:  #002347;
+    --navy:      #003366;
+    --navy-600:  #0A4D80;
+    --navy-100:  #C8D9EC;
+
+    --gold:      #FFB81C;
+    --gold-dim:  #E0A314;
+    --crimson:   #C8102E;
+
+    --cream:     #F8F4ED;
+    --cream-2:   #F2EBDD;
+    --paper:     #FFFFFF;
+    --ink:       #14171A;
+    --ink-soft:  #3D434A;
+    --ink-mute:  #6B7280;
+    --rule:      #E5DECE;
+
+    --serif: 'Fraunces', 'Source Serif Pro', Georgia, serif;
+    --sans:  'Manrope', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-link {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--navy); color: var(--paper);
+    padding: 0.6rem 1rem; z-index: 100;
+    text-decoration: none; font-weight: 700;
+  }
+  .skip-link:focus { left: 1rem; top: 1rem; }
+
+  .topbar {
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    padding: 1rem 0;
+    position: sticky; top: 0; z-index: 50;
+  }
+  .topbar-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand {
+    display: flex; flex-direction: column; gap: 0.1rem;
+    text-decoration: none; color: var(--navy-900);
+  }
+  .brand-title {
+    font-family: var(--sans); font-size: 0.95rem;
+    font-weight: 700; letter-spacing: -0.01em;
+  }
+  .brand-sub {
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .back-link {
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--navy); text-decoration: none;
+    padding: 0.4rem 0.85rem; border-radius: 999px;
+    border: 1px solid var(--rule);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .back-link:hover, .back-link:focus-visible {
+    background: var(--navy); color: var(--paper);
+  }
+  .back-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  .survey-hero { padding: 3rem 0 2rem; }
+  .eyebrow {
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--navy); margin-bottom: 0.85rem;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.08; letter-spacing: -0.02em;
+    color: var(--navy-900);
+    margin: 0 0 1rem;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  h1 em { font-style: italic; color: var(--navy); }
+  .lede {
+    font-size: 1.02rem; color: var(--ink-soft);
+    max-width: 38rem; margin: 0 0 1rem;
+  }
+  .lede + .lede { margin-top: 0.85rem; }
+
+  form { margin: 1.5rem 0 4rem; }
+
+  fieldset {
+    border: none; padding: 0;
+    margin: 0 0 2.5rem;
+    background: var(--paper); border-radius: 12px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 26, 51, 0.04);
+    border: 1px solid var(--rule);
+  }
+  .section-num {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-dim); margin-bottom: 0.4rem;
+  }
+  legend {
+    font-family: var(--serif); font-size: 1.4rem;
+    font-weight: 500; color: var(--navy-900);
+    margin-bottom: 0.4rem; padding: 0;
+    line-height: 1.2;
+  }
+  .section-help {
+    font-size: 0.92rem; color: var(--ink-mute);
+    margin: 0 0 1.5rem;
+  }
+
+  .field { margin-bottom: 1.25rem; }
+  .field:last-child { margin-bottom: 0; }
+  .field label.field-label {
+    display: block; font-size: 0.88rem;
+    font-weight: 600; color: var(--navy-900);
+    margin-bottom: 0.4rem;
+  }
+  .field label.field-label .req {
+    color: var(--crimson); margin-left: 0.15rem;
+  }
+  input[type="text"], input[type="email"], select, textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    background: var(--paper); color: var(--ink);
+    font-family: var(--sans); font-size: 1rem; line-height: 1.5;
+    border: 1.5px solid var(--rule);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.12);
+  }
+  input:invalid:not(:placeholder-shown) {
+    border-color: var(--crimson);
+  }
+  textarea {
+    resize: vertical; min-height: 110px;
+    font-family: var(--sans);
+  }
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23003366' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px 8px;
+    padding-right: 2.5rem;
+  }
+
+  /* ===== Checkbox group for meeting cadence ===== */
+  .cadence-help {
+    font-size: 0.82rem; color: var(--ink-mute);
+    font-style: italic; margin: 0 0 1rem;
+  }
+  .cadence-options {
+    display: flex; flex-direction: column;
+    gap: 0.6rem;
+  }
+  .cadence-option {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: var(--paper);
+    border: 1.5px solid var(--rule);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    line-height: 1.4;
+  }
+  .cadence-option:hover {
+    border-color: var(--navy);
+    background: rgba(0, 51, 102, 0.02);
+  }
+  .cadence-option:has(input:checked) {
+    border-color: var(--navy);
+    background: rgba(0, 51, 102, 0.04);
+  }
+  .cadence-option input[type="checkbox"] {
+    width: 20px; height: 20px;
+    accent-color: var(--navy);
+    cursor: pointer; flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .cadence-option .day {
+    font-weight: 600; color: var(--navy-900);
+    font-size: 0.95rem;
+  }
+  .cadence-option .time {
+    color: var(--ink-mute);
+    font-size: 0.9rem;
+    margin-left: 0.4rem;
+  }
+  .cadence-option .other-text {
+    font-weight: 600; color: var(--navy-900);
+    font-style: italic;
+  }
+
+  /* Conditional textarea — hidden until "Other" is checked */
+  .other-times-field {
+    display: none;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--rule);
+  }
+  .other-times-field.visible { display: block; }
+
+  /* Submit */
+  .form-footer {
+    display: flex; align-items: center; gap: 1rem;
+    flex-wrap: wrap; margin-top: 1.5rem;
+  }
+  .btn-submit {
+    background: var(--navy); color: var(--paper);
+    border: none;
+    padding: 0.95rem 2rem; border-radius: 999px;
+    font-family: var(--sans); font-size: 0.92rem;
+    font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-submit:hover {
+    background: var(--navy-900); transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 51, 102, 0.22);
+  }
+  .btn-submit:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .submit-hint { font-size: 0.82rem; color: var(--ink-mute); }
+
+  .status {
+    display: none; margin: 1rem 0;
+    padding: 1rem 1.25rem; border-radius: 8px;
+    font-size: 0.95rem;
+  }
+  .status.error {
+    display: block;
+    background: rgba(200, 16, 46, 0.08);
+    border: 1px solid rgba(200, 16, 46, 0.25);
+    color: var(--crimson);
+  }
+
+  .success-card {
+    display: none; text-align: center;
+    padding: 4rem 1.5rem;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    margin: 2rem 0 4rem;
+  }
+  .success-card.visible { display: block; }
+  .success-card .icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%; background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; color: var(--navy-900);
+  }
+  .success-card h2 {
+    font-family: var(--serif); font-size: 2rem;
+    color: var(--navy-900); margin: 0 0 0.5rem;
+    font-weight: 500;
+  }
+  .success-card p {
+    color: var(--ink-soft); max-width: 32rem;
+    margin: 0 auto 1.5rem;
+  }
+  .success-card .btn-home {
+    display: inline-block;
+    background: var(--navy); color: var(--paper);
+    padding: 0.85rem 1.75rem; border-radius: 999px;
+    font-weight: 700; font-size: 0.88rem;
+    text-decoration: none; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .success-card .btn-home:hover {
+    background: var(--navy-900); transform: translateY(-1px);
+  }
+
+  footer {
+    background: var(--navy-900); color: var(--navy-100);
+    padding: 2rem 0; font-size: 0.82rem; text-align: center;
+  }
+  footer a { color: var(--gold); text-decoration: none; font-weight: 600; }
+  footer a:hover { text-decoration: underline; }
+
+  .hide { display: none !important; }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to survey</a>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-title">AI Literacy and Innovation Project</span>
+      <span class="brand-sub">Fueled by LARC · Led by LBCC</span>
+    </a>
+    <a class="back-link" href="index.html">← Back to event page</a>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="container">
+
+    <section class="survey-hero">
+      <div class="eyebrow">Ongoing Project Operations</div>
+      <h1>Monthly Meeting <em>Scheduling</em> Survey</h1>
+      <p class="lede">
+        Thank you for participating in the A.I. Literacy &amp; Innovation Regional Project. To support collaboration across participating colleges, we are identifying a recurring monthly meeting cadence for virtual convenings.
+      </p>
+      <p class="lede">
+        Please complete this short survey to indicate your preferred meeting times. Your feedback will help establish a schedule that best supports participation across the region.
+      </p>
+    </section>
+
+    <form id="meetingForm" novalidate>
+
+      <!-- Section 1: Identity -->
+      <fieldset>
+        <div class="section-num">Section 01</div>
+        <legend>About you</legend>
+        <p class="section-help">So we can confirm your preferences with the cohort roster.</p>
+
+        <div class="field">
+          <label class="field-label" for="name">Full name <span class="req" aria-hidden="true">*</span><span class="sr-only">required</span></label>
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="">
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="email">Institutional email <span class="req" aria-hidden="true">*</span><span class="sr-only">required</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="yourname@yourcollege.edu">
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="college">Participating college / institution <span class="req" aria-hidden="true">*</span><span class="sr-only">required</span></label>
+          <select id="college" name="college" required>
+            <option value="">— Select your college —</option>
+            <option>Cerritos College</option>
+            <option>Citrus College</option>
+            <option>East Los Angeles College</option>
+            <option>El Camino College</option>
+            <option>Glendale Community College</option>
+            <option>Long Beach City College</option>
+            <option>Los Angeles City College</option>
+            <option>Los Angeles Harbor College</option>
+            <option>Los Angeles Mission College</option>
+            <option>Los Angeles Pierce College</option>
+            <option>Los Angeles Southwest College</option>
+            <option>Los Angeles Trade-Technical College</option>
+            <option>Los Angeles Valley College</option>
+            <option>Mt. San Antonio College</option>
+            <option>Pasadena City College</option>
+            <option>Rio Hondo College</option>
+            <option>Santa Monica College</option>
+            <option>West Los Angeles College</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- Section 2: Meeting cadence preferences -->
+      <fieldset>
+        <div class="section-num">Section 02</div>
+        <legend>Preferred monthly meeting cadence <span style="color: var(--crimson); font-size: 1rem;" aria-hidden="true">*</span><span class="sr-only">required</span></legend>
+        <p class="cadence-help">Select all that apply. Choosing multiple options improves our chances of finding a time that works.</p>
+
+        <div class="cadence-options" id="cadenceGroup" role="group" aria-label="Meeting cadence options">
+          <label class="cadence-option">
+            <input type="checkbox" name="cadence" value="1st Friday | 10:00 AM – 11:30 AM">
+            <span><span class="day">1st Friday of the Month</span><span class="time">| 10:00 AM – 11:30 AM</span></span>
+          </label>
+          <label class="cadence-option">
+            <input type="checkbox" name="cadence" value="2nd Friday | 10:00 AM – 11:30 AM">
+            <span><span class="day">2nd Friday of the Month</span><span class="time">| 10:00 AM – 11:30 AM</span></span>
+          </label>
+          <label class="cadence-option">
+            <input type="checkbox" name="cadence" value="3rd Friday | 10:00 AM – 11:30 AM">
+            <span><span class="day">3rd Friday of the Month</span><span class="time">| 10:00 AM – 11:30 AM</span></span>
+          </label>
+          <label class="cadence-option">
+            <input type="checkbox" name="cadence" value="2nd Tuesday | 3:00 PM – 4:30 PM">
+            <span><span class="day">2nd Tuesday of the Month</span><span class="time">| 3:00 PM – 4:30 PM</span></span>
+          </label>
+          <label class="cadence-option">
+            <input type="checkbox" name="cadence" value="Other" id="cadenceOther">
+            <span><span class="other-text">Other times work better for me</span></span>
+          </label>
+        </div>
+
+        <!-- Conditional textarea, revealed when "Other" is checked -->
+        <div class="other-times-field" id="otherTimesField">
+          <div class="field" style="margin-bottom: 0;">
+            <label class="field-label" for="otherTimes">If you selected "Other," please share your preferred days/times</label>
+            <textarea id="otherTimes" name="otherTimes" rows="3" placeholder="e.g., Wednesday afternoons, last Thursday of the month, etc."></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <div id="statusMsg" class="status" role="alert" aria-live="polite"></div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn-submit" id="submitBtn">
+          Submit Preferences
+          <span aria-hidden="true">→</span>
+        </button>
+        <span class="submit-hint">Required fields are marked with <span style="color: var(--crimson);">*</span></span>
+      </div>
+    </form>
+
+    <div id="successCard" class="success-card" role="status" aria-live="polite">
+      <div class="icon" aria-hidden="true">✓</div>
+      <h2>Thank you</h2>
+      <p>
+        Your meeting preferences have been recorded. Once we've gathered responses from across the region, we'll share the proposed cadence with you and your sector pathway lead.
+      </p>
+      <a href="index.html" class="btn-home">Back to event page</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>LA-25 LARC AI Literacy &amp; Innovation Project · Long Beach City College</p>
+  </div>
+</footer>
+
+<script>
+  // =========================================================================
+  // CONFIGURATION — replace with your deployed Apps Script Web App URL.
+  // See MEETING-SURVEY-SETUP-GUIDE.md for the one-time setup steps.
+  // =========================================================================
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwogoaC-P6atLdQafsTiLXgP323qcMuR-y267sf3ugLgkGDN9sTdtkbhvvPb3sSQBeR/exec';
+
+  const form         = document.getElementById('meetingForm');
+  const submitBtn    = document.getElementById('submitBtn');
+  const statusMsg    = document.getElementById('statusMsg');
+  const successCard  = document.getElementById('successCard');
+  const cadenceOther = document.getElementById('cadenceOther');
+  const otherField   = document.getElementById('otherTimesField');
+
+  // ---------------------------------------------------------------------------
+  // Conditional reveal: "Other times" textarea only appears when "Other" checked
+  // ---------------------------------------------------------------------------
+  function toggleOtherField() {
+    if (cadenceOther.checked) {
+      otherField.classList.add('visible');
+    } else {
+      otherField.classList.remove('visible');
+    }
+  }
+  cadenceOther.addEventListener('change', toggleOtherField);
+  toggleOtherField(); // initial state
+
+  // ---------------------------------------------------------------------------
+  // Validation, data collection, submission
+  // ---------------------------------------------------------------------------
+  function showError(message) {
+    statusMsg.className = 'status error';
+    statusMsg.textContent = message;
+    statusMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function clearError() {
+    statusMsg.className = 'status';
+    statusMsg.textContent = '';
+  }
+
+  function validateForm() {
+    clearError();
+
+    // Native required-field check first
+    if (!form.checkValidity()) {
+      const firstInvalid = form.querySelector(':invalid');
+      if (firstInvalid) {
+        firstInvalid.focus();
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      showError('Please complete all required fields before submitting.');
+      return false;
+    }
+
+    // Custom check: at least one cadence checkbox must be selected
+    const checkedCadence = form.querySelectorAll('input[name="cadence"]:checked');
+    if (checkedCadence.length === 0) {
+      showError('Please select at least one preferred meeting time (or "Other").');
+      document.getElementById('cadenceGroup').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return false;
+    }
+
+    return true;
+  }
+
+  function collectFormData() {
+    const formData = new FormData(form);
+    // Collect all checked cadence values as an array, then join with " | "
+    const cadenceValues = Array.from(
+      form.querySelectorAll('input[name="cadence"]:checked')
+    ).map(cb => cb.value);
+
+    return {
+      name:        formData.get('name')        || '',
+      email:       formData.get('email')       || '',
+      college:     formData.get('college')     || '',
+      cadence:     cadenceValues.join(' | '),
+      otherTimes:  formData.get('otherTimes')  || '',
+      submittedAt: new Date().toISOString(),
+    };
+  }
+
+  async function submitSurvey(data) {
+    // Apps Script Web Apps don't handle CORS preflight — use text/plain
+    // content type to avoid triggering a preflight OPTIONS request.
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(data),
+      redirect: 'follow',
+    });
+    return true;
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    if (APPS_SCRIPT_URL === 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+      showError(
+        'Survey backend is not configured yet. Please set APPS_SCRIPT_URL in meeting-survey.html ' +
+        '(see MEETING-SURVEY-SETUP-GUIDE.md for instructions).'
+      );
+      return;
+    }
+
+    const data = collectFormData();
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Submitting… <span aria-hidden="true">…</span>';
+
+    try {
+      await submitSurvey(data);
+      form.classList.add('hide');
+      successCard.classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Submit Preferences <span aria-hidden="true">→</span>';
+      showError(
+        'We could not submit your response. Please try again, or contact Ruth Amanuel ' +
+        '(ramanuel@lbcc.edu) so she can record your preferences directly.'
+      );
+      console.error('Meeting survey submission error:', err);
+    }
+  });
+</script>
+
+</body>
+</html>
