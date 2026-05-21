@@ -1143,6 +1143,63 @@
   details a { font-weight: 600; }
 
   /* ============================================================
+     FEEDBACK / EXIT SURVEY CALLOUT
+     ============================================================ */
+  .feedback-callout {
+    padding: 4rem 0 5rem;
+    background: var(--cream-2);
+    position: relative;
+  }
+  .feedback-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 8px 32px rgba(0, 26, 51, 0.06);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .feedback-text h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    font-weight: 500;
+    color: var(--navy-900);
+    margin: 0.4rem 0 0.6rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .feedback-text p {
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 38rem;
+    line-height: 1.6;
+  }
+  .feedback-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+  .feedback-meta {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+  @media (max-width: 720px) {
+    .feedback-callout { padding: 3rem 0; }
+    .feedback-card {
+      grid-template-columns: 1fr;
+      padding: 1.75rem 1.5rem;
+      gap: 1.5rem;
+    }
+    .feedback-action { align-items: stretch; }
+    .feedback-action .btn { justify-content: center; }
+  }
+
+  /* ============================================================
      CONTACT
      ============================================================ */
   .contact {
@@ -1549,6 +1606,7 @@
       <li><a href="#tracks">Tracks</a></li>
       <li><a href="#logistics">Logistics</a></li>
       <li><a href="#faq">FAQ</a></li>
+      <li><a href="#feedback">Feedback</a></li>
       <li><a href="#contact" class="nav-cta">Contact</a></li>
     </ul>
   </div>
@@ -1947,6 +2005,30 @@
         <p>If that's you, <strong>no action is needed.</strong> The lead college (Long Beach City College) will onboard you onto Canvas automatically using the email you provided on your signup form. You'll receive your Canvas invitation in the days following the Kick-Off. Once enrolled, you can <a href="https://larc.instructure.com/courses/25011~155" target="_blank" rel="noopener noreferrer" class="inline-link">open the regional Canvas course directly</a>.</p>
         <p>If you are an accepted participant and have not received Canvas access by the week after the Kick-Off, please contact Ruth Amanuel at <a href="mailto:ramanuel@lbcc.edu" class="inline-link">ramanuel@lbcc.edu</a> first — she'll verify your enrollment and resolve it directly. Accepted participants who need a manual fallback may <a href="https://larc.instructure.com/enroll/AGNNY9" target="_blank" rel="noopener noreferrer" class="inline-link">self-enroll here</a>.</p>
       </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEEDBACK / EXIT SURVEY
+     ============================================================ -->
+<section class="feedback-callout" id="feedback">
+  <div class="container">
+    <div class="feedback-card reveal">
+      <div class="feedback-text">
+        <div class="section-eyebrow"><span class="num">06</span>After the Kick-Off</div>
+        <h2>Tell us how it landed.</h2>
+        <p>
+          We'd love a few minutes of your reflection after the day wraps. Your feedback shapes how we design future convenings and project sessions across the region. All responses are held in strict confidence.
+        </p>
+      </div>
+      <div class="feedback-action">
+        <a href="survey.html" class="btn btn-primary">
+          Open the Kick-Off Survey
+          <span aria-hidden="true">→</span>
+        </a>
+        <span class="feedback-meta">Takes about 3 minutes</span>
+      </div>
     </div>
   </div>
 </section>
